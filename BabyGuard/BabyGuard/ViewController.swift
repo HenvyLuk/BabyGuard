@@ -10,9 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var contentView: UIView!
+    var seatTableViewController = SeatTableViewController()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        self.seatTableViewController = SeatTableViewController.init(style: UITableViewStyle.Plain)
+        self.addChildViewController(self.seatTableViewController)
+        self.seatTableViewController.view.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)
+        self.contentView.addSubview(self.seatTableViewController.view)
+        
     }
 
     override func didReceiveMemoryWarning() {
