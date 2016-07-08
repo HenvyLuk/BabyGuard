@@ -10,14 +10,14 @@ import UIKit
 
 class SchoolInfo: Information {
     
-    func schoolInfoFromServerData(dataDic :NSDictionary) -> SchoolInfo {
+    class func schoolInfoFromServerData(dataDic :NSDictionary) -> SchoolInfo {
         
-        let schoolInfo = SchoolInfo?()
+        let schoolInfo = SchoolInfo()
         
-        schoolInfo?.identifier = dataDic["_id"] as! String
-        schoolInfo?.name = dataDic["DeptName"] as! String
+        schoolInfo.identifier = dataDic["_id"] as! String
+        schoolInfo.name = dataDic["DeptName"] as! String
         
-        return schoolInfo!
+        return schoolInfo
     }
     
 }

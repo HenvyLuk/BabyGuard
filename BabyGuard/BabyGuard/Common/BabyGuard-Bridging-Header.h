@@ -7,3 +7,5 @@
 #import "NSString+URL.h"
 
 #import "XConnectionHelper.h"
+
+#import "MBProgressHUD.h"

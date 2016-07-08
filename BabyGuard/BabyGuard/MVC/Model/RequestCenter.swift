@@ -37,6 +37,7 @@ class RequestCenter: NSObject {
         let operation = manager.GET(fullUrl, parameters: nil, success: { (op: AFHTTPRequestOperation, responseObject: AnyObject) in
             let responseStr = String.init(data: responseObject as! NSData, encoding: NSUTF8StringEncoding)
             if responseStr != nil {
+                //print(responseStr)
                success(responseStr!)
             }
             
@@ -79,7 +80,7 @@ class RequestCenter: NSObject {
         
         let operation = manager.HTTPRequestOperationWithRequest(request, success: { (op: AFHTTPRequestOperation, responseObject: AnyObject) in
             let responseStr = String.init(data: responseObject as! NSData, encoding: NSUTF8StringEncoding)
-            print("responseStr:\(responseStr)")
+            //print("responseStr:\(responseStr)")
             if responseStr != nil {
                success(responseStr!)
             }

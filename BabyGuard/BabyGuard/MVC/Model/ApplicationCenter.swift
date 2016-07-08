@@ -18,9 +18,11 @@ class ApplicationCenter: NSObject {
     
     var curUser = UserInfo?()
     
-    var appDirector = DataDirector.directorInApp()
-    
     var curClass = ClassInfo?()
+    
+    var curSchool = SchoolInfo?()
+    
+    var appDirector = DataDirector.directorInApp()
     
     class func defaultCenter() -> ApplicationCenter {
         struct singleton {

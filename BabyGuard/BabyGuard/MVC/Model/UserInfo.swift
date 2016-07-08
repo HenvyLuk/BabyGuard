@@ -19,15 +19,15 @@ class UserInfo: Information {
     var isManualSign = Bool()
     var userLevel: UserLevel?
 
-    init(userName un: String,passWord pw:String) {
-        super.init()
-        name = un
-        password = pw
-    }
+//    init(userName un: String,passWord pw:String) {
+//        super.init()
+//        name = un
+//        password = pw
+//    }
     
     class func userInfoFromServerData(dataDic :NSDictionary, withUserName un: String, withPassword pw :String) -> UserInfo {
         
-        let userInfo = UserInfo(userName: un, passWord: pw)
+        let userInfo = UserInfo()
         
         userInfo.userID = dataDic["_id"] as! String
         userInfo.personName = dataDic["PersonName"] as! String

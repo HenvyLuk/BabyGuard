@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CellProtocol:NSObjectProtocol {
+protocol SeatCellProtocol:NSObjectProtocol {
     func seatCell(cell :SeatViewCell, didSelectAtIndex index :NSInteger)
     func seatCell(cell :SeatViewCell, didLongPressAtIndex index :NSInteger)
     
@@ -16,7 +16,7 @@ protocol CellProtocol:NSObjectProtocol {
 
 class SeatViewCell: UITableViewCell, SeatViewProtocol{
 
-    var theDelegate: CellProtocol?
+    var theDelegate: SeatCellProtocol?
     var row = NSInteger()
     var seatViewArray = NSArray()
     
@@ -35,6 +35,8 @@ class SeatViewCell: UITableViewCell, SeatViewProtocol{
             let i = CGFloat(i)
             let view = SeatView(frame: CGRectMake(10 + interSpce * (i + 0.5) + 58 * i, 5, 58, 81))
             view.tag = NSInteger(i)
+            
+            //view.backgroundColor = UIColor.blueColor()
             view.theDelegate = self
             array.addObject(view)
             self.contentView.addSubview(view)
@@ -44,11 +46,20 @@ class SeatViewCell: UITableViewCell, SeatViewProtocol{
         
     }
     
-    func setSeatCellWithSeatArray(array: NSArray) {
-        for i in self.seatViewArray {
-            if i.isKindOfClass(SeatView) {
-                
-            }
+    func setCellWithSeatArray(seatArray: NSArray) {
+        var index = 0
+        
+        while index < seatArray.count {
+            let view = self.seatViewArray[index] as! SeatView
+            view.showSeatInformation(seatArray.objectAtIndex(index) as! SeatInfo)
+            view.hidden = false
+            index += 1
+        }
+        
+        while index < 4 {
+            let view = self.seatViewArray[index] as! SeatView
+            view.hidden = true
+            index += 1
         }
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23D4D86C9561712C7B129A9A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA4D38A2F87304612815D9D /* libPods.a */; };
 		5C032B991D295C44003CF613 /* SeatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C032B981D295C44003CF613 /* SeatTableViewController.swift */; };
 		5C032B9B1D296047003CF613 /* SeatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C032B9A1D296047003CF613 /* SeatViewCell.swift */; };
 		5C9EEFC71D2A3AB700071C7B /* Definition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9EEFC61D2A3AB700071C7B /* Definition.swift */; };
@@ -28,6 +29,10 @@
 		5CA64C531D2AAE3800F5CE32 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C481D2AAE3800F5CE32 /* AFURLRequestSerialization.m */; };
 		5CA64C541D2AAE3800F5CE32 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C4A1D2AAE3800F5CE32 /* AFURLResponseSerialization.m */; };
 		5CA64C551D2AAE3800F5CE32 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C4C1D2AAE3800F5CE32 /* AFURLSessionManager.m */; };
+		5CB34CC61D2E3E6200F39150 /* SeatInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB34CC51D2E3E6200F39150 /* SeatInfo.swift */; };
+		5CB887611D2C97C900F00AED /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB887601D2C97C900F00AED /* ListViewController.swift */; };
+		5CB887631D2CDE8100F00AED /* ClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB887621D2CDE8100F00AED /* ClassView.swift */; };
+		5CB8876E1D2CE7C500F00AED /* ClassViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8876D1D2CE7C500F00AED /* ClassViewCell.swift */; };
 		5CCBA8A51D29E87D002FD76B /* XDeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */; };
 		5CCC4C271D2B97C400C162EF /* XConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */; };
 		5CDC7A6E1D24F64800F19BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC7A6D1D24F64800F19BAD /* AppDelegate.swift */; };
@@ -43,8 +48,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5C032B981D295C44003CF613 /* SeatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatTableViewController.swift; sourceTree = "<group>"; };
-		5C032B9A1D296047003CF613 /* SeatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatViewCell.swift; sourceTree = "<group>"; };
+		55558DDB304A60D73A1E34D5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		5C032B981D295C44003CF613 /* SeatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeatTableViewController.swift; path = ../../SeatTableViewController.swift; sourceTree = "<group>"; };
+		5C032B9A1D296047003CF613 /* SeatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeatViewCell.swift; path = ../../../SeatViewCell.swift; sourceTree = "<group>"; };
 		5C9EEFC61D2A3AB700071C7B /* Definition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definition.swift; sourceTree = "<group>"; };
 		5C9EEFCE1D2A481400071C7B /* ApplicationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationCenter.swift; path = BabyGuard/MVC/Model/ApplicationCenter.swift; sourceTree = SOURCE_ROOT; };
 		5C9EEFD01D2A4A4400071C7B /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -75,7 +81,11 @@
 		5CA64C4B1D2AAE3800F5CE32 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		5CA64C4C1D2AAE3800F5CE32 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		5CA64CE41D2ABDDC00F5CE32 /* BabyGuard-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BabyGuard-Bridging-Header.h"; path = "Common/BabyGuard-Bridging-Header.h"; sourceTree = "<group>"; };
-		5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XDeviceHelper.swift; sourceTree = "<group>"; };
+		5CB34CC51D2E3E6200F39150 /* SeatInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatInfo.swift; sourceTree = "<group>"; };
+		5CB887601D2C97C900F00AED /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		5CB887621D2CDE8100F00AED /* ClassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassView.swift; sourceTree = "<group>"; };
+		5CB8876D1D2CE7C500F00AED /* ClassViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassViewCell.swift; sourceTree = "<group>"; };
+		5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XDeviceHelper.swift; path = ../XDeviceHelper.swift; sourceTree = "<group>"; };
 		5CCC4C251D2B97C400C162EF /* XConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XConnectionHelper.h; sourceTree = "<group>"; };
 		5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XConnectionHelper.m; sourceTree = "<group>"; };
 		5CDC7A6A1D24F64800F19BAD /* BabyGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,11 +96,13 @@
 		5CDC7A771D24F64800F19BAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5CDC7A7A1D24F64800F19BAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5CDC7A7C1D24F64800F19BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5CDC7A821D2503C400F19BAD /* SeatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatView.swift; sourceTree = "<group>"; };
-		5CDC7A841D2504F200F19BAD /* TapableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapableView.swift; sourceTree = "<group>"; };
-		5CDC7A881D25149600F19BAD /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		5CDC7A821D2503C400F19BAD /* SeatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeatView.swift; path = ../../SeatView.swift; sourceTree = "<group>"; };
+		5CDC7A841D2504F200F19BAD /* TapableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapableView.swift; path = ../../TapableView.swift; sourceTree = "<group>"; };
+		5CDC7A881D25149600F19BAD /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleView.swift; path = ../../CircleView.swift; sourceTree = "<group>"; };
 		5CE518F01D2ABFD100578C41 /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URL.h"; sourceTree = "<group>"; };
 		5CE518F11D2ABFD100578C41 /* NSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URL.m"; sourceTree = "<group>"; };
+		854B0F0F95BEFFD98125EAC0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CAA4D38A2F87304612815D9D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23D4D86C9561712C7B129A9A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +131,7 @@
 		5C9EEFC01D2A396000071C7B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */,
 				5CCC4C251D2B97C400C162EF /* XConnectionHelper.h */,
 				5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */,
 				5CE518F01D2ABFD100578C41 /* NSString+URL.h */,
@@ -141,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				5CA257201D2B5C200093E516 /* LoginViewController.swift */,
+				5CB887601D2C97C900F00AED /* ListViewController.swift */,
+				5C032B981D295C44003CF613 /* SeatTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -152,6 +168,7 @@
 				5C9EEFD21D2A4ADE00071C7B /* Information.swift */,
 				5C9EEFD61D2A55A200071C7B /* SchoolInfo.swift */,
 				5C9EEFD81D2A59EE00071C7B /* ClassInfo.swift */,
+				5CB34CC51D2E3E6200F39150 /* SeatInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,6 +176,11 @@
 		5C9EEFC41D2A39DB00071C7B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5CB887641D2CDF1400F00AED /* Cell */,
+				5CB887621D2CDE8100F00AED /* ClassView.swift */,
+				5CDC7A821D2503C400F19BAD /* SeatView.swift */,
+				5CDC7A841D2504F200F19BAD /* TapableView.swift */,
+				5CDC7A881D25149600F19BAD /* CircleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +220,15 @@
 			path = BabyGuard/AFNetworking;
 			sourceTree = "<group>";
 		};
+		5CB887641D2CDF1400F00AED /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5C032B9A1D296047003CF613 /* SeatViewCell.swift */,
+				5CB8876D1D2CE7C500F00AED /* ClassViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		5CDC7A611D24F64700F19BAD = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +236,8 @@
 				5C9EEFCD1D2A3CC800071C7B /* Resources */,
 				5CDC7A6C1D24F64800F19BAD /* BabyGuard */,
 				5CDC7A6B1D24F64800F19BAD /* Products */,
+				E4FED31C8DD4D8065DFBC03F /* Pods */,
+				F005D8A1569AEED262F4271E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,16 +262,27 @@
 				5CDC7A791D24F64800F19BAD /* LaunchScreen.storyboard */,
 				5CDC7A7C1D24F64800F19BAD /* Info.plist */,
 				5CDC7A741D24F64800F19BAD /* BabyGuard.xcdatamodeld */,
-				5CDC7A821D2503C400F19BAD /* SeatView.swift */,
-				5CDC7A841D2504F200F19BAD /* TapableView.swift */,
-				5CDC7A881D25149600F19BAD /* CircleView.swift */,
-				5C032B981D295C44003CF613 /* SeatTableViewController.swift */,
-				5C032B9A1D296047003CF613 /* SeatViewCell.swift */,
-				5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */,
 				5C9EEFC61D2A3AB700071C7B /* Definition.swift */,
 				5CA64CE41D2ABDDC00F5CE32 /* BabyGuard-Bridging-Header.h */,
 			);
 			path = BabyGuard;
+			sourceTree = "<group>";
+		};
+		E4FED31C8DD4D8065DFBC03F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				55558DDB304A60D73A1E34D5 /* Pods.debug.xcconfig */,
+				854B0F0F95BEFFD98125EAC0 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F005D8A1569AEED262F4271E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CAA4D38A2F87304612815D9D /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,9 +292,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5CDC7A7F1D24F64800F19BAD /* Build configuration list for PBXNativeTarget "BabyGuard" */;
 			buildPhases = (
+				B247B7D48816A3776361E5E8 /* Check Pods Manifest.lock */,
 				5CDC7A661D24F64700F19BAD /* Sources */,
 				5CDC7A671D24F64700F19BAD /* Frameworks */,
 				5CDC7A681D24F64700F19BAD /* Resources */,
+				9E6290B085C57DDD4662502C /* Embed Pods Frameworks */,
+				3A0194B2280F3F927CAA55AF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -308,6 +355,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3A0194B2280F3F927CAA55AF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E6290B085C57DDD4662502C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B247B7D48816A3776361E5E8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5CDC7A661D24F64700F19BAD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -315,6 +410,7 @@
 			files = (
 				5CA64C551D2AAE3800F5CE32 /* AFURLSessionManager.m in Sources */,
 				5CA64C521D2AAE3800F5CE32 /* AFURLConnectionOperation.m in Sources */,
+				5CB887611D2C97C900F00AED /* ListViewController.swift in Sources */,
 				5CDC7A891D25149600F19BAD /* CircleView.swift in Sources */,
 				5CA64C4F1D2AAE3800F5CE32 /* AFHTTPSessionManager.m in Sources */,
 				5CCC4C271D2B97C400C162EF /* XConnectionHelper.m in Sources */,
@@ -333,12 +429,15 @@
 				5CA64C4E1D2AAE3800F5CE32 /* AFHTTPRequestOperationManager.m in Sources */,
 				5CDC7A831D2503C400F19BAD /* SeatView.swift in Sources */,
 				5CA2571F1D2B584A0093E516 /* DataHelper.swift in Sources */,
+				5CB8876E1D2CE7C500F00AED /* ClassViewCell.swift in Sources */,
 				5C9EEFCF1D2A481400071C7B /* ApplicationCenter.swift in Sources */,
 				5C032B9B1D296047003CF613 /* SeatViewCell.swift in Sources */,
 				5CDC7A701D24F64800F19BAD /* ViewController.swift in Sources */,
 				5C9EEFD91D2A59EE00071C7B /* ClassInfo.swift in Sources */,
 				5C9EEFC71D2A3AB700071C7B /* Definition.swift in Sources */,
 				5CCBA8A51D29E87D002FD76B /* XDeviceHelper.swift in Sources */,
+				5CB34CC61D2E3E6200F39150 /* SeatInfo.swift in Sources */,
+				5CB887631D2CDE8100F00AED /* ClassView.swift in Sources */,
 				5CA64C531D2AAE3800F5CE32 /* AFURLRequestSerialization.m in Sources */,
 				5CA64C4D1D2AAE3800F5CE32 /* AFHTTPRequestOperation.m in Sources */,
 				5CA64C541D2AAE3800F5CE32 /* AFURLResponseSerialization.m in Sources */,
@@ -455,6 +554,7 @@
 		};
 		5CDC7A801D24F64800F19BAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55558DDB304A60D73A1E34D5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -472,6 +572,7 @@
 		};
 		5CDC7A811D24F64800F19BAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 854B0F0F95BEFFD98125EAC0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

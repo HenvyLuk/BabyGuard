@@ -8,15 +8,25 @@
 
 import UIKit
 
-class SeatTableViewController: UITableViewController, CellProtocol{
+class SeatTableViewController: UITableViewController, SeatCellProtocol{
 
     var row = NSInteger()
     var curReqID = NSNumber?()
     var studentDic = NSDictionary?()
     var curRequest: AFHTTPRequestOperation? = nil
+    var classID = ""
+    var stuArray = NSArray()
+    var stuNameArray = [String]()
+    var hud = MBProgressHUD()
+    var stuDic = Dictionary<String, SeatInfo>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(ApplicationCenter.defaultCenter().curClass?.identifier)
+        print(ApplicationCenter.defaultCenter().curSchool?.identifier)
+        print(ApplicationCenter.defaultCenter().curUser?.personName)
+
+        print(classID)
         
         listStudents()
     }
@@ -32,7 +42,10 @@ class SeatTableViewController: UITableViewController, CellProtocol{
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        if self.stuNameArray.count % 4 == 0 {
+            return (NSInteger)(self.stuNameArray.count / 4)
+        }
+        return (NSInteger)(self.stuNameArray.count / 4) + 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -41,9 +54,28 @@ class SeatTableViewController: UITableViewController, CellProtocol{
             cell = SeatViewCell(style: .Default, reuseIdentifier: "reuseIdentifier")
             
         }
+        tableView.separatorStyle = .None
         if let seatCell = cell as? SeatViewCell{
            seatCell.theDelegate = self
            seatCell.row = indexPath.row
+            
+            var seatArray = [SeatInfo]()
+            var userIDArray = [String]()
+            
+            for (key, _) in self.stuDic {
+                userIDArray.append(key)
+                
+            }
+            
+            for i in 0..<4 {
+                let j = indexPath.row * 4 + i
+                if j >= userIDArray.count {
+                    break
+                }
+                seatArray.append(self.stuDic[userIDArray[j] as String]! as SeatInfo)
+                
+            }
+            seatCell.setCellWithSeatArray(seatArray)
         }
         
         return cell!
@@ -66,7 +98,7 @@ class SeatTableViewController: UITableViewController, CellProtocol{
 
 
     func listStudents() {
-        let urlString = Definition.listStudentsUrl(withDomain: "wx.gztn.com.cn", userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, parentID: (ApplicationCenter.defaultCenter().curClass?.identifier)!, pageSize: "150", curPage: "1")
+        let urlString = Definition.listStudentsUrl(withDomain: "wx.gztn.com.cn", userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, parentID: self.classID, pageSize: "150", curPage: "1")
         
             print("urlString:\(urlString)")
             
@@ -76,8 +108,41 @@ class SeatTableViewController: UITableViewController, CellProtocol{
     
     
     func listStudentsSuccess(data: String) {
-        
-        
+        let content = XConnectionHelper.contentOfWanServerString(data)
+        if content != nil {
+            print("stuInfo:\(content)")
+            if ((content["Success"]?.isEqual("true")) != nil) {
+                let count = content["MaxCount"] as? String
+                if NSInteger(count!) == 1{
+                    //该班级只有一个学生
+                    
+                    
+                }else if NSInteger(count!) > 1 {
+                    self.stuArray = (content["SerData"] as? NSArray)!
+                    for (_,value) in self.stuArray.enumerate(){
+                        
+                        let stuName = value["PersonName"] as? String
+                        self.stuNameArray.append(stuName!)
+                        
+                        let seatInfo = SeatInfo.seatInfoFromServerData(value as! NSDictionary)
+                        
+                        self.stuDic[(seatInfo.userInfo?.userID)!] = seatInfo
+                        
+                        
+                    }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.hud.hide(true)
+                        self.tableView.reloadData()
+                    })
+                    
+                }
+                
+            }
+            
+            
+            
+            
+        }
     }
     
     func listStudentsFailure(data: String) {

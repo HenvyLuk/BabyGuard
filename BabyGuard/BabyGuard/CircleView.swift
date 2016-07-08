@@ -13,7 +13,7 @@ let PI = 3.14159265358979323846
 class CircleView: UIView {
     
     var radius = CGFloat()
-    var color = UIColor()
+    var color = UIColor.greenColor()
     var isUpper = Bool()
     
     
@@ -28,15 +28,24 @@ class CircleView: UIView {
         self.backgroundColor = UIColor.clearColor()
     }
     
-//    override func drawRect(rect: CGRect) {
-//        let content = UIGraphicsGetCurrentContext()
+    override func drawRect(rect: CGRect) {
+        let context:CGContextRef = UIGraphicsGetCurrentContext()!
+//        CGContextSetAllowsAntialiasing(context, true)
 //        
-//        CGContextSetFillColorWithColor(content, self.color.CGColor)
-//        CGContextMoveToPoint(content,self.radius,self.radius)
-//        CGContextAddArc(content,self.radius,self.radius,self.radius,0,CGFloat(PI),(self.isUpper ? 1 : 0))
-//        CGContextFillPath(content)
+//        CGContextSetStrokeColorWithColor(context, self.color.CGColor)
+//        CGContextAddArc(context,self.radius,self.radius,self.radius,0,CGFloat(PI),(self.isUpper ? 1 : 0))
 //        
-//    }
+//        //CGContextAddEllipseInRect(context, CGRectMake(5,5,100,100))
+//        CGContextStrokePath(context)
+        
+
+        
+        CGContextSetFillColorWithColor(context, self.color.CGColor)
+        CGContextMoveToPoint(context,self.radius,self.radius)
+        CGContextAddArc(context,self.radius,self.radius,self.radius,0,CGFloat(PI),(self.isUpper ? 1 : 0))
+        CGContextFillPath(context)
+        
+    }
  
 
 }

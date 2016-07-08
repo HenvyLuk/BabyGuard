@@ -25,20 +25,20 @@ class SeatView: TapableView {
         
         self.nameLabel.backgroundColor = UIColor.clearColor()
         self.nameLabel = UILabel.init(frame: CGRectMake(0, 64, frame.size.width, 17))
-        //self.nameLabel.font = UIFont(name: "iconfont", size: 14)
         self.nameLabel.font = UIFont.boldSystemFontOfSize(14)
         self.nameLabel.textAlignment = NSTextAlignment.Center
-        self.nameLabel.text = "1111"
         self.addSubview(self.nameLabel)
         
         self.amCircleView = CircleView.init(frame: CGRectMake(2, 2, frame.size.width - 4, frame.size.width - 4))
         self.amCircleView.isUpper = true
-        self.amCircleView.radius = frame.size.width - 4
+        self.amCircleView.radius = (frame.size.width - 4) * 0.5
+        self.amCircleView.color = UIColor.redColor()
         self.addSubview(self.amCircleView)
         
         self.pmCircleView = CircleView.init(frame: CGRectMake(2, 2, frame.size.width - 4, frame.size.width - 4))
         self.pmCircleView.isUpper = false
-        self.pmCircleView.radius = frame.size.width - 4
+        self.pmCircleView.radius = (frame.size.width - 4) * 0.5
+        self.pmCircleView.color = UIColor.blackColor()
         self.addSubview(self.pmCircleView)
         
     }
@@ -48,5 +48,60 @@ class SeatView: TapableView {
     }
     
 
+    func showSeatInformation(seatInfo: SeatInfo) {
+    
+        if (seatInfo.isSelected == true) {
+            self.cirImgView.hidden = false
+        }else {
+            self.cirImgView.hidden = true
+        }
+        
+        self.nameLabel.text = seatInfo.userInfo?.personName
+        
+        switch seatInfo.amSignStatus {
+        case .SignStatusNo:
+            self.amCircleView.color = UIColor.blueColor()
+        case .SignStatusIll:
+            self.amCircleView.color = UIColor.redColor()
+        case .SignStatusManual:
+            self.amCircleView.color = UIColor.greenColor()
+        case .SignStatusCard:
+            self.amCircleView.color = UIColor.yellowColor()
+        case .SignStatusCPushed,.SignStatusMPushed:
+            self.amCircleView.color = UIColor.grayColor()
+        default:
+            break
+        }
+        
+        switch seatInfo.pmSignStatus {
+        case .SignStatusNo:
+            self.pmCircleView.color = UIColor.blueColor()
+        case .SignStatusIll:
+            self.pmCircleView.color = UIColor.redColor()
+        case .SignStatusManual:
+            self.pmCircleView.color = UIColor.greenColor()
+        case .SignStatusCard:
+            self.pmCircleView.color = UIColor.yellowColor()
+        case .SignStatusCPushed,.SignStatusMPushed:
+            self.pmCircleView.color = UIColor.grayColor()
+        default:
+            break
+        }
+        
+        self.amCircleView.setNeedsDisplay()
+        self.pmCircleView.setNeedsDisplay()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

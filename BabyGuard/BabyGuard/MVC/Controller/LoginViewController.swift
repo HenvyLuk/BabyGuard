@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.username.text = "ceshilhw"
+        self.username.text = "teacher3"
         self.password.text = "123"
         
         // Do any additional setup after loading the view.
@@ -70,13 +70,16 @@ class LoginViewController: UIViewController {
         RequestCenter.defaultCenter().postHttpRequest(withUrl: loginStr, parameters: nil, filePath: nil, progress: nil, success: self.loginGotSucResponse, cancel: {}, failure: self.loginGotFailResponse)
         
         
+       
+        
+        
     }
     
     func loginGotSucResponse(data: String) {
         let content = XConnectionHelper.contentOfWanServerString(data)
         
         if (content != nil) {
-            print("content\(content)")
+            print("userInfo:\(content)")
             if ((content["Success"]?.isEqual("true")) != nil) {
                 if let dataDic = content["SerData"] as? NSDictionary{
                     
@@ -85,44 +88,26 @@ class LoginViewController: UIViewController {
                     
                     // 保存用户信息
                     
-                 
-                    let seatViewCon = SeatTableViewController()
-                    self.navigationController?.pushViewController(seatViewCon, animated: true)
+            
+                    
+                    let listViewCon = ListViewController()
+                    self.navigationController?.pushViewController(listViewCon, animated: true)
+                    
                     
                 }
-                
-                
                 
             }
             
             
         }
         
-        //let content = DataHelper.analyzeServerData(inString: data)
-//        if content.isSuc {
-//            if let dataDic = content.datas as? NSDictionary{
-//                let userInfo = UserInfo.userInfoFromServerData(dataDic, withUserName: self.username.text!, withPassword: self.password.text!)
-//                
-//                ApplicationCenter.defaultCenter().curUser = userInfo
-//                // 保存用户信息
-//                
-//                
-//                
-//                
-//                let seatViewCon = SeatTableViewController()
-//                
-//                self.navigationController?.pushViewController(seatViewCon, animated: true)
-//            }
-//        }
-        
-        
-        
-        
     }
+    
     func loginGotFailResponse(data: String) {
        
     }
     
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
