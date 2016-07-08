@@ -25,7 +25,7 @@ class UserInfo: Information {
 //        password = pw
 //    }
     
-    class func userInfoFromServerData(dataDic :NSDictionary, withUserName un: String, withPassword pw :String) -> UserInfo {
+    class func userInfoFromServerData(dataDic :NSDictionary) -> UserInfo {
         
         let userInfo = UserInfo()
         

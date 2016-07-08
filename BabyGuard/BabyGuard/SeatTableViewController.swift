@@ -15,10 +15,14 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     var studentDic = NSDictionary?()
     var curRequest: AFHTTPRequestOperation? = nil
     var classID = ""
+    var lanDomain = ""
     var stuArray = NSArray()
     var stuNameArray = [String]()
     var hud = MBProgressHUD()
     var stuDic = Dictionary<String, SeatInfo>()
+    var serArray = [Information]()
+    var loginVc = LoginViewController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +31,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         print(ApplicationCenter.defaultCenter().curUser?.personName)
 
         print(classID)
+        print(lanDomain)
         
         listStudents()
     }
@@ -120,7 +125,6 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
                 }else if NSInteger(count!) > 1 {
                     self.stuArray = (content["SerData"] as? NSArray)!
                     for (_,value) in self.stuArray.enumerate(){
-                        
                         let stuName = value["PersonName"] as? String
                         self.stuNameArray.append(stuName!)
                         
@@ -128,8 +132,10 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
                         
                         self.stuDic[(seatInfo.userInfo?.userID)!] = seatInfo
                         
-                        
                     }
+                    
+                    self.checkSignStatus()
+                    
                     dispatch_async(dispatch_get_main_queue(), {
                         self.hud.hide(true)
                         self.tableView.reloadData()
@@ -139,9 +145,6 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
                 
             }
             
-            
-            
-            
         }
     }
     
@@ -150,6 +153,32 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         
     }
     
+    func checkSignStatus() {
+        let serUrlArr = ToolHelper.cacheInfoGet("ServiceURL")
+        print("Server:\(serUrlArr)")
+        if ToolHelper.isNowAM() {
+            let urlString = Definition.listLanStuSignStatus(withDomain: serUrlArr[0], classID: self.classID, isMorn: "1")
+            RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)
+            
+        }else {
+            let urlString = Definition.listLanStuSignStatus(withDomain: serUrlArr[0], classID: self.classID, isMorn: "0")
+            RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)
+            
+        }
+        
+        
+    }
+    
+    func checkSignStatusSuc(data: String) {
+        print("data:\(data)")
+        
+    }
+    
+    func checkSignStatusFail(data: String) {
+        
+        
+    }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

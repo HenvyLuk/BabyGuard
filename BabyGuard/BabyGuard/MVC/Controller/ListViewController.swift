@@ -98,14 +98,12 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
                         let className = value["DeptName"] as? String
                         self.classNameArray.append(className!)
                         //self.classNameArray = ["aaa","bbb","ccc","ddd","eee","fff","ggg","hhh","iii"]
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.hud.hide(true)
-                            self.tableView.reloadData()
-                        })
-                        
-                        
                         
                     }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.hud.hide(true)
+                        self.tableView.reloadData()
+                    })
   
                 }
                 
@@ -125,6 +123,7 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
         let seatViewCon = SeatTableViewController()
         let selectClass = self.schoolArray[index] as! NSDictionary
         seatViewCon.classID = selectClass["_id"] as! String
+        //ApplicationCenter.defaultCenter().curClass?.identifier = selectClass["_id"] as! String
         
         self.navigationController?.pushViewController(seatViewCon, animated: true)
         

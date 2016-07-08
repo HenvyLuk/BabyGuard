@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginBtn: UIButton!
@@ -17,6 +18,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var tipsLabel: UILabel!
     var curReqID = NSNumber()
     var guid = String()
+    var serviceArray = [Information]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,13 +85,16 @@ class LoginViewController: UIViewController {
             print("userInfo:\(content)")
             if ((content["Success"]?.isEqual("true")) != nil) {
                 if let dataDic = content["SerData"] as? NSDictionary{
-                    
-                    let userInfo = UserInfo.userInfoFromServerData(dataDic, withUserName: self.username.text!, withPassword: self.password.text!)
+
+                    let userInfo = UserInfo.userInfoFromServerData(dataDic)
                     ApplicationCenter.defaultCenter().curUser = userInfo
                     
                     // 保存用户信息
                     
             
+                    
+                    let urlString = Definition.listSchoolServers(withDomain: "wx.gztn.com.cn", userID: dataDic["_id"] as! String, schoolID: dataDic["Dept_SchoolID"] as! String)
+                    RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.listSchoolServerSuc, cancel: {}, failure: self.listSchoolServerFail)
                     
                     let listViewCon = ListViewController()
                     self.navigationController?.pushViewController(listViewCon, animated: true)
@@ -107,7 +113,45 @@ class LoginViewController: UIViewController {
        
     }
     
+    func listSchoolServerSuc(data: String) {
+        let content = XConnectionHelper.contentOfWanServerString(data)
+        if (content != nil) {
+            print("SchoolServerInfo:\(content)")
+            if ((content["Success"]?.isEqual("true")) != nil) {
+                
+                
+                if let dataArray = content["SerData"] as? NSArray {
+                    var urlStr = [String]()
+                    for (_,value) in dataArray.enumerate() {
+                        let schSerInfo = Information()
+                        schSerInfo.name = value["ServiceName"] as! String
+                        schSerInfo.identifier = value["ServiceURL"] as! String
+                        self.serviceArray.append(schSerInfo)
 
+                        urlStr.append(value["ServiceURL"] as! String)
+
+                        
+                    }
+                    
+                    ToolHelper.cacheInfoSet("ServiceURL", value: urlStr)
+                    
+                  
+
+                }
+                
+                
+            }
+            
+            
+            
+            
+        }
+        
+    }
+    
+    func listSchoolServerFail(data: String) {
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -115,6 +159,10 @@ class LoginViewController: UIViewController {
     }
     
 
+    deinit {
+    
+        print("zzzzzzzzzz")
+    }
     /*
     // MARK: - Navigation
 
