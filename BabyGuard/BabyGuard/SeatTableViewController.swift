@@ -22,6 +22,9 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     var stuDic = Dictionary<String, SeatInfo>()
     var serArray = [Information]()
     var loginVc = LoginViewController()
+    var serUrlArr = [String]()
+    var isContinueCheck = Bool?()
+    var checkTimer = NSTimer()
     
     
     override func viewDidLoad() {
@@ -34,6 +37,15 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         print(lanDomain)
         
         listStudents()
+        
+        if ToolHelper.isNowAM() {
+            self.isContinueCheck = false
+        }else{
+            self.isContinueCheck = true
+        }
+        self.serUrlArr = ToolHelper.cacheInfoGet("ServiceURL")
+
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,6 +78,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
             
             var seatArray = [SeatInfo]()
             var userIDArray = [String]()
+
             
             for (key, _) in self.stuDic {
                 userIDArray.append(key)
@@ -92,16 +105,75 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     
     //MARK: - CellProtocol
     func seatCell(cell :SeatViewCell, didSelectAtIndex index :NSInteger){
-       print("didSelectAtIndex\(index)")
+        print("didSelectAtIndex\(index)")
+        if index >= self.stuDic.count {
+            print("超出索引")
+            return
+        }
+        
+        let userIDArray = Array(self.stuDic.keys)
+        let seatInfo = self.stuDic[userIDArray[index] as String]! as SeatInfo
+        
+        seatInfo.isSelected = !seatInfo.isSelected!
+        
+        self.tableView.reloadData()
+        
+        
         
     }
     
     func seatCell(cell :SeatViewCell, didLongPressAtIndex index :NSInteger){
-       print("didLongPressAtIndex\(index)")
+        print("didLongPressAtIndex\(index)")
+        if index >= self.stuDic.count {
+            print("超出索引")
+            return
+        }
+        let valueArray = Array(self.stuDic.values)
+        let seatInfo = valueArray[index] as SeatInfo
+        
+        if ToolHelper.isNowAM() {
+            if seatInfo.amSignStatus == .SignStatusNo {
+                seatInfo.amSignStatus = .SignStatusIll
+                self.signIllForStudentWithSeat(seatInfo)
+
+            }
+        }else {
+            if seatInfo.pmSignStatus == .SignStatusNo {
+                seatInfo.pmSignStatus = .SignStatusIll
+                self.signIllForStudentWithSeat(seatInfo)
+
+            }
+            
+        }
+        
+        self.tableView.reloadData()
+
         
     }
 
-
+    func signIllForStudentWithSeat(seatInfo: SeatInfo) {
+        var parameters = Dictionary<String, String>()
+        parameters["Key"] = "Time"
+        parameters["QdType"] = String(SignStatus.SignStatusIll.rawValue)
+        parameters["Users"] = (seatInfo.userInfo?.userID)! + (seatInfo.userInfo?.userName)!
+        print("parameters:\(parameters)")
+        
+        let signUrl = Definition.lanSignInURL(withDomain: self.serUrlArr[0])
+        RequestCenter.defaultCenter().postHttpRequest(withUrl: signUrl, parameters: parameters, filePath: nil, progress: nil, success: self.signInPostSuc, cancel: {}, failure: self.signInPostFail)
+        
+    }
+    
+    func signInPostSuc(data: String) {
+        print("data:\(data)")
+        
+        
+    }
+    
+    func signInPostFail(data: String) {
+        
+    }
+    
+    
     func listStudents() {
         let urlString = Definition.listStudentsUrl(withDomain: "wx.gztn.com.cn", userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, parentID: self.classID, pageSize: "150", curPage: "1")
         
@@ -154,16 +226,20 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     }
     
     func checkSignStatus() {
-        let serUrlArr = ToolHelper.cacheInfoGet("ServiceURL")
         print("Server:\(serUrlArr)")
-        if ToolHelper.isNowAM() {
-            let urlString = Definition.listLanStuSignStatus(withDomain: serUrlArr[0], classID: self.classID, isMorn: "1")
+        if self.isContinueCheck  == true {
+            let urlString = Definition.listLanStuSignStatus(withDomain: self.serUrlArr[0], classID: self.classID, isMorn: "1")
             RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)
-            
         }else {
-            let urlString = Definition.listLanStuSignStatus(withDomain: serUrlArr[0], classID: self.classID, isMorn: "0")
-            RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)
-            
+            if ToolHelper.isNowAM() {
+                let urlString = Definition.listLanStuSignStatus(withDomain: self.serUrlArr[0], classID: self.classID, isMorn: "1")
+                RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)
+                
+            }else {
+                let urlString = Definition.listLanStuSignStatus(withDomain: self.serUrlArr[0], classID: self.classID, isMorn: "0")
+                RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)
+                
+            }
         }
         
         
@@ -171,11 +247,83 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     
     func checkSignStatusSuc(data: String) {
         print("data:\(data)")
+
+        let content = XConnectionHelper.contentOfWanServerSampleString(data)
+        print("signInfo:\(content)")
+        var isSuc = false
+        if content != nil {
+            if ((content["Success"]?.isEqual("true")) != nil) {
+                let signArray = content["Data"] as! NSArray
+                if signArray.count > 0 {
+                    let now = NSDate()
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.locale = NSLocale.currentLocale()
+                    dateFormatter.dateFormat = "yyyyMMdd"
+                    let convertedDate = dateFormatter.stringFromDate(now)
+                    
+                    for (_,value) in signArray.enumerate() {
+                        
+                        let userID = value["_id"] as! String
+                        var isChange = false
+                        
+                        let seatInfo = self.stuDic[userID]
+                        if seatInfo != nil {
+                            let signTime = value["QdTime"]
+                            let range = (signTime as! NSString).rangeOfString(":")
+                            
+                            let hour = (signTime as! NSString).substringToIndex(range.location)
+                            let minute = (signTime as! NSString).substringFromIndex(range.location + range.length)
+                            let signStatus = SignStatus(rawValue: value["QdState"] as! NSInteger)
+                            
+                            if NSInteger(hour) < 12 {
+                                if seatInfo?.amSignStatus != signStatus {
+                                    seatInfo?.amSignStatus = signStatus!
+                                    seatInfo?.amSignTime = convertedDate + hour + minute
+                                    isChange = true
+                                }
+                            }else {
+                                if seatInfo?.pmSignStatus != signStatus {
+                                    seatInfo?.pmSignStatus = signStatus!
+                                    seatInfo?.pmSignTime = convertedDate + hour + minute
+                                    isChange = true
+                                }
+                                
+                            }
+                            
+                        }
+                        if isChange {
+                            self.tableView.reloadData()
+                        }
+                        
+                    }
+                    
+                }
+                isSuc = true
+                
+            } else{
+                print("服务器返回false")
+                
+            }
+            
+        }
+        
+        if self.isContinueCheck == true {
+            if isSuc {
+                self.isContinueCheck = false
+            }
+            self.checkSignStatus()
+        }else{
+//           self.checkTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:#selector(SeatTableViewController.checkSignStatus), userInfo: nil, repeats: false)
+        }
+        
+        
+        
+ 
         
     }
     
     func checkSignStatusFail(data: String) {
-        
+         self.checkTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector:#selector(SeatTableViewController.checkSignStatus), userInfo: nil, repeats: false)
         
     }
 

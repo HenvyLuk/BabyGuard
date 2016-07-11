@@ -32,13 +32,11 @@ class SeatView: TapableView {
         self.amCircleView = CircleView.init(frame: CGRectMake(2, 2, frame.size.width - 4, frame.size.width - 4))
         self.amCircleView.isUpper = true
         self.amCircleView.radius = (frame.size.width - 4) * 0.5
-        self.amCircleView.color = UIColor.redColor()
         self.addSubview(self.amCircleView)
         
         self.pmCircleView = CircleView.init(frame: CGRectMake(2, 2, frame.size.width - 4, frame.size.width - 4))
         self.pmCircleView.isUpper = false
         self.pmCircleView.radius = (frame.size.width - 4) * 0.5
-        self.pmCircleView.color = UIColor.blackColor()
         self.addSubview(self.pmCircleView)
         
     }

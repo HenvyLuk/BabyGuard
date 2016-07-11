@@ -16,7 +16,7 @@ class ToolHelper: NSObject {
         dateFormatter.locale = NSLocale.currentLocale()
         dateFormatter.dateFormat = "HH"
         let convertedDate = dateFormatter.stringFromDate(now)
-        if NSInteger(convertedDate) >= 17 {
+        if NSInteger(convertedDate) >= 12 {
             print(">12am")
             return false
         }else {

@@ -18,14 +18,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        for i in 0..<5 {
+        let name = "1234:5678999"
         
-            //self.stuDic.setValue("aaaaa", forKey: String(i))
-            self.stuDic[String(i)]="aaaaa"
-        }
- 
+        let range = (name as NSString).rangeOfString(":")
+   
+        let new = (name as NSString).substringToIndex(range.location)
         
+        let most = (name as NSString).substringFromIndex(range.location + range.length)
+        
+        
+        //print(new)
+        //print(most)
         
         
         
@@ -33,8 +36,9 @@ class ViewController: UIViewController {
     }
     @IBAction func testBtn(sender: AnyObject) {
         
-        print(self.stuDic)
+        var dic:Dictionary<String,String> = ["1":"aaa","2":"bbb","3":"ccc"]
         
+        print(dic)
 
   
         
