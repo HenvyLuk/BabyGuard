@@ -66,12 +66,10 @@ class SeatViewCell: UITableViewCell, SeatViewProtocol{
     
     func tapableView (view: UIView, tappedWithRecognizer recognizer: UITapGestureRecognizer){
         self.theDelegate?.seatCell(self, didSelectAtIndex: self.row * 4 + view.tag)
-        print("tappedWithRecognizer \(self.row)")
     }
     
     func tapableView(view: UIView, longPressedWithRecognizer recognizer: UILongPressGestureRecognizer){
         self.theDelegate?.seatCell(self, didLongPressAtIndex: self.row * 4 + view.tag)
-        print("longPressedWithRecognizer")
     }
     
     required init?(coder aDecoder: NSCoder) {

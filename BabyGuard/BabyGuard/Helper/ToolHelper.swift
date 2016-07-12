@@ -17,23 +17,21 @@ class ToolHelper: NSObject {
         dateFormatter.dateFormat = "HH"
         let convertedDate = dateFormatter.stringFromDate(now)
         if NSInteger(convertedDate) >= 12 {
-            print(">12am")
             return false
         }else {
-            print("<12am")
             return true
         }
         
     }
     
-    class func cacheInfoSet(key: String,value: [String]) {
+    class func cacheInfoSet(key: String,value: String) {
         let ud = NSUserDefaults()
         ud.setValue(value, forKey: key)
         
     }
-    class func cacheInfoGet(key: String) -> [String] {
+    class func cacheInfoGet(key: String) -> String {
         let ud = NSUserDefaults()
-        let temp = ud.objectForKey(key) as! [String]
+        let temp = ud.objectForKey(key) as! String
         return temp
         
     }

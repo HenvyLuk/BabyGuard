@@ -9,6 +9,8 @@
 import UIKit
 
 class ApplicationCenter: NSObject {
+    
+    var udid = String?()
 
     var wanDomain = String?()
     

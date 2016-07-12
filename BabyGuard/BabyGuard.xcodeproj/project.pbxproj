@@ -34,6 +34,9 @@
 		5CB887611D2C97C900F00AED /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB887601D2C97C900F00AED /* ListViewController.swift */; };
 		5CB887631D2CDE8100F00AED /* ClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB887621D2CDE8100F00AED /* ClassView.swift */; };
 		5CB8876E1D2CE7C500F00AED /* ClassViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8876D1D2CE7C500F00AED /* ClassViewCell.swift */; };
+		5CBA04C71D34865100ADFCF8 /* XKeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04C61D34865100ADFCF8 /* XKeychainHelper.m */; };
+		5CBA04C91D34DD8000ADFCF8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */; };
+		5CBA04D11D34E8A700ADFCF8 /* TopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04D01D34E8A700ADFCF8 /* TopAnimator.swift */; };
 		5CCBA8A51D29E87D002FD76B /* XDeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */; };
 		5CCC4C271D2B97C400C162EF /* XConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */; };
 		5CDC7A6E1D24F64800F19BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC7A6D1D24F64800F19BAD /* AppDelegate.swift */; };
@@ -87,6 +90,10 @@
 		5CB887601D2C97C900F00AED /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		5CB887621D2CDE8100F00AED /* ClassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassView.swift; sourceTree = "<group>"; };
 		5CB8876D1D2CE7C500F00AED /* ClassViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassViewCell.swift; sourceTree = "<group>"; };
+		5CBA04C51D34865100ADFCF8 /* XKeychainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XKeychainHelper.h; sourceTree = "<group>"; };
+		5CBA04C61D34865100ADFCF8 /* XKeychainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKeychainHelper.m; sourceTree = "<group>"; };
+		5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		5CBA04D01D34E8A700ADFCF8 /* TopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAnimator.swift; sourceTree = "<group>"; };
 		5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XDeviceHelper.swift; path = ../XDeviceHelper.swift; sourceTree = "<group>"; };
 		5CCC4C251D2B97C400C162EF /* XConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XConnectionHelper.h; sourceTree = "<group>"; };
 		5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XConnectionHelper.m; sourceTree = "<group>"; };
@@ -133,6 +140,8 @@
 		5C9EEFC01D2A396000071C7B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5CBA04C51D34865100ADFCF8 /* XKeychainHelper.h */,
+				5CBA04C61D34865100ADFCF8 /* XKeychainHelper.m */,
 				5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */,
 				5CCC4C251D2B97C400C162EF /* XConnectionHelper.h */,
 				5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */,
@@ -140,6 +149,7 @@
 				5CE518F11D2ABFD100578C41 /* NSString+URL.m */,
 				5CA2571E1D2B584A0093E516 /* DataHelper.swift */,
 				5C28F6331D2F59400032E26C /* ToolHelper.swift */,
+				5CBA04D01D34E8A700ADFCF8 /* TopAnimator.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -160,6 +170,7 @@
 				5CA257201D2B5C200093E516 /* LoginViewController.swift */,
 				5CB887601D2C97C900F00AED /* ListViewController.swift */,
 				5C032B981D295C44003CF613 /* SeatTableViewController.swift */,
+				5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -423,16 +434,19 @@
 				5CDC7A761D24F64800F19BAD /* BabyGuard.xcdatamodeld in Sources */,
 				5C032B991D295C44003CF613 /* SeatTableViewController.swift in Sources */,
 				5C28F6341D2F59400032E26C /* ToolHelper.swift in Sources */,
+				5CBA04D11D34E8A700ADFCF8 /* TopAnimator.swift in Sources */,
 				5CDC7A851D2504F200F19BAD /* TapableView.swift in Sources */,
 				5CA64C511D2AAE3800F5CE32 /* AFSecurityPolicy.m in Sources */,
 				5C9EEFD51D2A4D3300071C7B /* RequestCenter.swift in Sources */,
 				5C9EEFD11D2A4A4400071C7B /* UserInfo.swift in Sources */,
+				5CBA04C71D34865100ADFCF8 /* XKeychainHelper.m in Sources */,
 				5C9EEFD31D2A4ADE00071C7B /* Information.swift in Sources */,
 				5CE518F21D2ABFD100578C41 /* NSString+URL.m in Sources */,
 				5CA2571D1D2B4E460093E516 /* DataDirector.swift in Sources */,
 				5CA64C4E1D2AAE3800F5CE32 /* AFHTTPRequestOperationManager.m in Sources */,
 				5CDC7A831D2503C400F19BAD /* SeatView.swift in Sources */,
 				5CA2571F1D2B584A0093E516 /* DataHelper.swift in Sources */,
+				5CBA04C91D34DD8000ADFCF8 /* CalendarViewController.swift in Sources */,
 				5CB8876E1D2CE7C500F00AED /* ClassViewCell.swift in Sources */,
 				5C9EEFCF1D2A481400071C7B /* ApplicationCenter.swift in Sources */,
 				5C032B9B1D296047003CF613 /* SeatViewCell.swift in Sources */,

@@ -30,7 +30,7 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
     }
 
     func listRequest() {
-        let listSchoolStr = Definition.listSchoolUrl(withDomain: "wx.gztn.com.cn", userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, pageSize: "100", curPage: "1")
+        let listSchoolStr = Definition.listSchoolUrl(withDomain: ApplicationCenter.defaultCenter().wanDomain!, userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, pageSize: "100", curPage: "1")
         
         RequestCenter.defaultCenter().postHttpRequest(withUrl: listSchoolStr, parameters: nil, filePath: nil, progress: nil, success: self.listSchoolSucResponse, cancel: {}, failure: listSchoolFailResponse)
 
@@ -45,16 +45,16 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
         
         if content != nil {
             print("schoolInfo:\(content)")
-            if ((content["Success"]?.isEqual("true")) != nil){
-                let count = content["MaxCount"] as? String
+            if ((content[Definition.KEY_SER_SUC]?.isEqual("true")) != nil){
+                let count = content[Definition.KEY_SER_COUNT] as? String
                 if NSInteger(count!) == 1 {
-                    if let schoolArray = content["SerData"] as? NSArray {
+                    if let schoolArray = content[Definition.KEY_SER_DATA] as? NSArray {
                 
                         let dataDic = schoolArray[0]
                         let schoolInfo = SchoolInfo.schoolInfoFromServerData(dataDic as! NSDictionary)
                         ApplicationCenter.defaultCenter().curSchool = schoolInfo
                         
-                        let listClassStr = Definition.listClassUrl(withDomain: "wx.gztn.com.cn", userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, parentID: (ApplicationCenter.defaultCenter().curSchool?.identifier)!, pageSize: "100", curPage: "1")
+                        let listClassStr = Definition.listClassUrl(withDomain: ApplicationCenter.defaultCenter().wanDomain!, userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, parentID: (ApplicationCenter.defaultCenter().curSchool?.identifier)!, pageSize: "100", curPage: "1")
                         
                         RequestCenter.defaultCenter().postHttpRequest(withUrl: listClassStr, parameters: nil, filePath: nil, progress: nil, success: self.listClassSucResponse, cancel: {}, failure: self.listClassFailResponse)
                         
@@ -85,19 +85,18 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
         let content = XConnectionHelper.contentOfWanServerString(data)
         if content != nil {
             print("classInfo:\(content)")
-            if ((content["Success"]?.isEqual("true")) != nil) {
-                let count = content["MaxCount"] as? String
+            if ((content[Definition.KEY_SER_SUC]?.isEqual("true")) != nil) {
+                let count = content[Definition.KEY_SER_COUNT] as? String
                 if NSInteger(count!) == 1{
-                //该教师只有一个班级
+                //该教师只带一个班级
                    
                     
                 }else if NSInteger(count!) > 1 {
-                    self.schoolArray = (content["SerData"] as? NSArray)!
+                    self.schoolArray = (content[Definition.KEY_SER_DATA] as? NSArray)!
                     for (_,value) in self.schoolArray.enumerate(){
                     
-                        let className = value["DeptName"] as? String
+                        let className = value[Definition.KEY_DATA_DEPT_NAME] as? String
                         self.classNameArray.append(className!)
-                        //self.classNameArray = ["aaa","bbb","ccc","ddd","eee","fff","ggg","hhh","iii"]
                         
                     }
                     dispatch_async(dispatch_get_main_queue(), {
@@ -120,15 +119,20 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
     }
     
     func ClassCell(cell :ClassViewCell, didSelectAtIndex index :NSInteger){
-        let seatViewCon = SeatTableViewController()
         let selectClass = self.schoolArray[index] as! NSDictionary
-        seatViewCon.classID = selectClass["_id"] as! String
-        //ApplicationCenter.defaultCenter().curClass?.identifier = selectClass["_id"] as! String
         
-        self.navigationController?.pushViewController(seatViewCon, animated: true)
+        ToolHelper.cacheInfoSet(Definition.KEY_CLASSID, value: selectClass[Definition.KEY_DATA_ID] as! String)
+        
+        let sto = UIStoryboard.init(name: "Main", bundle: nil)
+        
+        let viewCon = sto.instantiateViewControllerWithIdentifier("class")
+        
+        
+        self.navigationController?.pushViewController(viewCon, animated: true)
         
         
     }
+    
     
     func ClassCell(cell :ClassViewCell, didLongPressAtIndex index :NSInteger){
     
