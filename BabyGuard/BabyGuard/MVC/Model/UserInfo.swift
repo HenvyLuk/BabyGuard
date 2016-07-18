@@ -32,14 +32,16 @@ class UserInfo: Information {
         userInfo.userID = dataDic["_id"] as! String
         userInfo.personName = dataDic["PersonName"] as! String
         
-        let signCode = dataDic["Phone"] as? String
+        let signCode = dataDic["Phone"] as! String
         userInfo.isManualSign = (signCode == "1") ? true : false
-        let studentCode = dataDic["StudentCode"] as? String
-        userInfo.isChatEnable = (studentCode == "1") ? true : false
+        let studentCode = dataDic["StudentCode"] as! NSInteger
+        userInfo.isChatEnable = (studentCode == 1) ? true : false
         
         userInfo.loginLevel = dataDic["LoginLevel"] as! String
-        userInfo.userLevel = dataDic["YXBZ"] as? UserLevel
-    
+        
+        let levelStr = dataDic["YXBZ"] as! NSInteger
+        userInfo.userLevel = UserLevel(rawValue: NSInteger(levelStr))
+        
         
         return userInfo
     }

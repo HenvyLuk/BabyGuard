@@ -38,8 +38,16 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         }else{
             self.isContinueCheck = true
         }
-
         listStudents()
+        //listDateSignStatus()
+
+        if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
+            //listStudents()
+
+        } else if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 1 {
+           //listDateSignStatus()
+        }
+        
         
     }
 
@@ -174,7 +182,8 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     
     func listStudents() {
         let urlString = Definition.listStudentsUrl(withDomain: ApplicationCenter.defaultCenter().wanDomain!, userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, parentID: self.classID, pageSize: "150", curPage: "1")
-                    
+        
+        print(urlString)
             RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.listStudentsSuccess, cancel: {}, failure: self.listStudentsFailure)
 
     }
@@ -191,25 +200,29 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
                     
                     
                 }else if NSInteger(count!) > 1 {
-                    self.stuArray = (content[Definition.KEY_SER_DATA] as? NSArray)!
-                    for (_,value) in self.stuArray.enumerate(){
-                        let stuName = value[Definition.KEY_DATA_PER_NAME] as? String
-                        self.stuNameArray.append(stuName!)
+                        self.stuArray = (content[Definition.KEY_SER_DATA] as? NSArray)!
+                        for (_,value) in self.stuArray.enumerate(){
+                            let stuName = value[Definition.KEY_DATA_PER_NAME] as? String
+                            self.stuNameArray.append(stuName!)
+                            
+                            let seatInfo = SeatInfo.seatInfoFromServerData(value as! NSDictionary)
+                            
+                            self.stuDic[(seatInfo.userInfo?.userID)!] = seatInfo
+                            
+                            
+                        }
                         
-                        let seatInfo = SeatInfo.seatInfoFromServerData(value as! NSDictionary)
                         
-                        self.stuDic[(seatInfo.userInfo?.userID)!] = seatInfo
+                        self.checkSignStatus()
                         
-                        
-                    }
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.hud.hide(true)
+                            self.tableView.reloadData()
+                        })
                     
                     
-                    self.checkSignStatus()
                     
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.hud.hide(true)
-                        self.tableView.reloadData()
-                    })
+                    
                     
                 }
                 
@@ -223,6 +236,23 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         
     }
     
+    func listDateSignStatus() {
+        let urlString = Definition.listLanStuDateSignStatus(withDomain: self.serUrlArr, StudentID: "f1ab1827-c46a-4ba4-a752-d0264a282a96", beginDate: "20160718", endDate: "")
+        print(urlString)
+        
+        RequestCenter.defaultCenter().postHttpRequest(withUrl: urlString, parameters: nil, filePath: nil, progress: nil, success: self.listDateSignSuc, cancel: {}, failure: self.listDateSignFail)
+    }
+    
+    //f1ab1827-c46a-4ba4-a752-d0264a282a96
+    //f1ab1827-c46a-4ba4-a752-d0264a282a96
+    func listDateSignSuc(data: String) {
+        print("data:\(data)")
+    }
+    
+    func listDateSignFail(data: String) {
+        
+    }
+    
     func checkSignStatus() {
         if self.isContinueCheck  == true {
             let urlString = Definition.listLanStuSignStatus(withDomain: self.serUrlArr, classID: self.classID, isMorn: "1")
@@ -231,7 +261,8 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
             if ToolHelper.isNowAM() {
                 let urlString = Definition.listLanStuSignStatus(withDomain: self.serUrlArr, classID: self.classID, isMorn: "1")
                 RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)
-                
+                print(urlString)
+
             }else {
                 let urlString = Definition.listLanStuSignStatus(withDomain: self.serUrlArr, classID: self.classID, isMorn: "0")
                 RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)

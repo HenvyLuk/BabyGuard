@@ -89,7 +89,14 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
                 let count = content[Definition.KEY_SER_COUNT] as? String
                 if NSInteger(count!) == 1{
                 //该教师只带一个班级
-                   
+                    
+                    let classArray = content[Definition.KEY_SER_DATA] as? NSArray
+                    
+                    ToolHelper.cacheInfoSet(Definition.KEY_CLASSID, value: classArray![0][Definition.KEY_DATA_ID] as! String)
+                    
+                    let sto = UIStoryboard.init(name: "Main", bundle: nil)
+                    let viewCon = sto.instantiateViewControllerWithIdentifier("class")
+                    self.navigationController?.pushViewController(viewCon, animated: true)
                     
                 }else if NSInteger(count!) > 1 {
                     self.schoolArray = (content[Definition.KEY_SER_DATA] as? NSArray)!

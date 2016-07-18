@@ -25,7 +25,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //self.username.text = "ceshilhw"
         self.username.text = "teacher3"
+
         self.password.text = "123"
         
         if Platform.isSimulator {
@@ -124,10 +126,7 @@ class LoginViewController: UIViewController {
             tipsLabel.hidden = false
             return
         }
-        //wx.gztn.com.cn
-        //SJGZ-GZTN-CXJ-2013
-        //#define URL_LOGIN_GT            @"http://%@/nopage/GTPhoneLogin/?CheckID=SJGZ-GZTN-CXJ-2013&UserName=%@&Pwd=%@&GTSerial=%@&VerifyID=%@"
-        //#define URL_LIST_DOMAIN         @"http://wx.gztn.com.cn/nopage/ALL_HOST_LIST"
+    
 
         
         var parameters = [NSObject : AnyObject]()
@@ -173,6 +172,8 @@ class LoginViewController: UIViewController {
                     let userInfo = UserInfo.userInfoFromServerData(dataDic)
                     ApplicationCenter.defaultCenter().curUser = userInfo
                     
+                    //print("dataDic:\(dataDic)")
+                    
                     // 保存用户信息
                     let guid = dataDic[Definition.KEY_DATA_GUID] as! String
                     
@@ -182,8 +183,19 @@ class LoginViewController: UIViewController {
                     XKeychainHelper.saveData(userInfoDic, forKey: Definition.KEY_KC_PREFIX + self.username.text!)
             
                     
+                    
+                    
+                    
+                    
                     let urlString = Definition.listSchoolServers(withDomain: ApplicationCenter.defaultCenter().wanDomain!, userID: dataDic[Definition.KEY_DATA_ID] as! String, schoolID: dataDic[Definition.KEY_SER_DEPT_SCHID] as! String)
                     RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.listSchoolServerSuc, cancel: {}, failure: self.listSchoolServerFail)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     let listViewCon = ListViewController()
                     self.navigationController?.pushViewController(listViewCon, animated: true)
