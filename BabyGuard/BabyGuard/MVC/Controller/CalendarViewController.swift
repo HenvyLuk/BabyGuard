@@ -20,6 +20,8 @@ class CalendarViewController: UIViewController {
     var shouldShowDaysOut = true
     var animationFinished = true
     var selectedDay: DayView!
+    var seatViewCon = SeatTableViewController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +70,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     
     /// Required method to implement!
     func firstWeekday() -> Weekday {
-        return .Sunday
+        return .Monday
     }
     
     // MARK: Optional methods
@@ -84,8 +86,11 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     func didSelectDayView(dayView: CVCalendarDayView, animationDidFinish: Bool) {
         print("\(dayView.date.commonDescription) is selected!")
         selectedDay = dayView
+        seatViewCon.selectedDateSignStatus(dayView.date.commonDescription)
         
         self.dismissViewControllerAnimated(true, completion: nil)
+        
+        print("wwwww\(dayView.weekView.weekdaysIn)")
         
     }
     

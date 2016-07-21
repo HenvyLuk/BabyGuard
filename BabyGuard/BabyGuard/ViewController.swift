@@ -10,48 +10,93 @@ import UIKit
 
 class ViewController: UIViewController, UIViewControllerTransitioningDelegate, UIAlertViewDelegate{
 
+    @IBOutlet weak var coverView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var tipsView: UIView!
     var seatTableViewController = SeatTableViewController()
+    var signStatusTableViewController = SignStatusTableViewController()
+    
     var procSeatArray = [SeatInfo]()
     var isLastOPAtAM = Bool()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.seatTableViewController = SeatTableViewController.init(style: UITableViewStyle.Plain)
-        self.addChildViewController(self.seatTableViewController)
-        self.seatTableViewController.view.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)
-        self.contentView.addSubview(self.seatTableViewController.view)
         
-        
-//        let rightItem = UIBarButtonItem(title: "查询", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.makeEnquiriesBtn))
-//        self.navigationItem.rightBarButtonItem = rightItem
         let leftItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.popPrecious))
         self.navigationItem.leftBarButtonItem = leftItem
         
-        let tools = UIToolbar.init(frame: CGRectMake(0, 0, 100, 45))
-        tools.backgroundColor = UIColor.redColor()
+        if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
+            coverView.hidden = true
+            self.seatTableViewController = SeatTableViewController.init(style: UITableViewStyle.Plain)
+            self.addChildViewController(self.seatTableViewController)
+            self.seatTableViewController.view.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)
+            self.contentView.addSubview(self.seatTableViewController.view)
         
-        var buttons = [UIBarButtonItem]()
-        let button1 = UIBarButtonItem.init(title: "签到", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.signInBtn))
+            
+            let tools = UIToolbar.init(frame: CGRectMake(0, 0, 100, 45))
+            tools.backgroundColor = UIColor.redColor()
+            
+            var buttons = [UIBarButtonItem]()
+            let button1 = UIBarButtonItem.init(title: "签到", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.signInBtn))
+            let button2 = UIBarButtonItem.init(title: "查询", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.makeEnquiriesBtn))
+            
+            buttons.append(button1)
+            buttons.append(UIBarButtonItem.init(customView: UIView.init(frame: CGRectMake(0, 0, 15, 45))))
+            buttons.append(button2)
+            tools.setItems(buttons, animated: true)
+            
+            let myBtn = UIBarButtonItem.init(customView: tools)
+            self.navigationItem.rightBarButtonItem = myBtn
+            
+        }else if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 1 {
+            
+            self.signStatusTableViewController = SignStatusTableViewController.init(style: UITableViewStyle.Plain)
+            self.addChildViewController(self.signStatusTableViewController)
+            self.signStatusTableViewController.view.frame = CGRectMake(0 ,0 ,self.contentView.frame.size.width, self.contentView.frame.size.height)
+            self.contentView.addSubview(self.signStatusTableViewController.view)
+
+            let right = UIBarButtonItem(title: "查询周", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.makeEnquiriesBtn))
+            self.navigationItem.rightBarButtonItem = right
+            
+            
+            let nextRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.nextPageSwipe))
+            nextRecognizer.direction = UISwipeGestureRecognizerDirection.Down
+            coverView.addGestureRecognizer(nextRecognizer)
+            let preRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.previousPageSwipe))
+            nextRecognizer.direction = UISwipeGestureRecognizerDirection.Up
+            coverView.addGestureRecognizer(preRecognizer)
+            
+            
+        }
         
-        let button2 = UIBarButtonItem.init(title: "查询", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.makeEnquiriesBtn))
+    }
+    
+    func nextPageSwipe() {
+        print("1")
+        let animation = CATransition()
+        animation.duration = 0.7
+        animation.type = "pageCurl"
+        animation.subtype = kCATransitionFromBottom
+        self.view.layer.addAnimation(animation, forKey: "animation")
         
-        buttons.append(button1)
-        buttons.append(UIBarButtonItem.init(customView: UIView.init(frame: CGRectMake(0, 0, 15, 45))))
-        buttons.append(button2)
+        signStatusTableViewController.changeDateStr()
         
-        tools.setItems(buttons, animated: true)
+    }
+    
+    
+    func previousPageSwipe() {
+        print("2")
+        let animation = CATransition()
+        animation.duration = 0.7
+        animation.type = "pageUnCurl"
+        animation.subtype = kCATransitionFromTop
         
-        let myBtn = UIBarButtonItem.init(customView: tools)
-        self.navigationItem.rightBarButtonItem = myBtn
+        self.view.layer.addAnimation(animation, forKey: "animation")
         
     }
     
     func signInBtn() {
-        print("aaaaaa")
         if ApplicationCenter.defaultCenter().lanDomain == "" {
             AlertHelper.showConfirmAlert("没有连接到内网服务器，请选择", delegate: self, type: NSInteger(Definition.ALERT_NO_LAN_DOMAIN)!)
             return
@@ -209,6 +254,12 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
        return TopDisAnimator()
     }
     
+    @IBAction func curbClick(sender: AnyObject) {
+        
+
+
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

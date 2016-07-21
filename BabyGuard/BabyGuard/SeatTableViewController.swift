@@ -25,11 +25,12 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     var serUrlArr = ""
     var isContinueCheck = Bool?()
     var checkTimer = NSTimer()
+    var selectedDate = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.serUrlArr = ToolHelper.cacheInfoGet(Definition.KEY_SERVICEURL)
         self.classID = ToolHelper.cacheInfoGet(Definition.KEY_CLASSID)
         
@@ -38,8 +39,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         }else{
             self.isContinueCheck = true
         }
-        listStudents()
-        //listDateSignStatus()
+        //listStudents()
 
         if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
             //listStudents()
@@ -48,6 +48,11 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
            //listDateSignStatus()
         }
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
 
@@ -219,11 +224,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
                             self.hud.hide(true)
                             self.tableView.reloadData()
                         })
-                    
-                    
-                    
-                    
-                    
+                                        
                 }
                 
             }
@@ -236,22 +237,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         
     }
     
-    func listDateSignStatus() {
-        let urlString = Definition.listLanStuDateSignStatus(withDomain: self.serUrlArr, StudentID: "f1ab1827-c46a-4ba4-a752-d0264a282a96", beginDate: "20160718", endDate: "")
-        print(urlString)
-        
-        RequestCenter.defaultCenter().postHttpRequest(withUrl: urlString, parameters: nil, filePath: nil, progress: nil, success: self.listDateSignSuc, cancel: {}, failure: self.listDateSignFail)
-    }
     
-    //f1ab1827-c46a-4ba4-a752-d0264a282a96
-    //f1ab1827-c46a-4ba4-a752-d0264a282a96
-    func listDateSignSuc(data: String) {
-        print("data:\(data)")
-    }
-    
-    func listDateSignFail(data: String) {
-        
-    }
     
     func checkSignStatus() {
         if self.isContinueCheck  == true {
@@ -341,9 +327,6 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         }else{
 //           self.checkTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:#selector(SeatTableViewController.checkSignStatus), userInfo: nil, repeats: false)
         }
-        
-        
-        
  
         
     }
@@ -353,6 +336,39 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         
     }
 
+    
+    func selectedDateSignStatus(date: String) {
+        print("date:\(date)")
+        
+        if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
+            let urlStr = Definition.listLanClassDateSignStatus(withDomain: ToolHelper.cacheInfoGet(Definition.KEY_SERVICEURL), ClassID: ToolHelper.cacheInfoGet(Definition.KEY_CLASSID), beginDate: date, endDate: "")
+            
+            print(urlStr)
+            
+            RequestCenter.defaultCenter().postHttpRequest(withUrl: urlStr, parameters: nil, filePath: nil, progress: nil, success: self.selectedDateSignSuc, cancel: {}, failure: self.selectedDateSignFail)
+        }else if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 1 {
+            
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
+    func selectedDateSignSuc(data: String) {
+        print(data)
+        print("aaaaa")
+    }
+    
+    func selectedDateSignFail(data: String) {
+        
+    }
+    
+    
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

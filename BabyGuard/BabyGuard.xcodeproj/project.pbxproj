@@ -11,6 +11,7 @@
 		5C032B991D295C44003CF613 /* SeatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C032B981D295C44003CF613 /* SeatTableViewController.swift */; };
 		5C032B9B1D296047003CF613 /* SeatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C032B9A1D296047003CF613 /* SeatViewCell.swift */; };
 		5C28F6341D2F59400032E26C /* ToolHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C28F6331D2F59400032E26C /* ToolHelper.swift */; };
+		5C828BBC1D3E08430037F5B1 /* SignStatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C828BBB1D3E08430037F5B1 /* SignStatusTableViewController.swift */; };
 		5C9EEFC71D2A3AB700071C7B /* Definition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9EEFC61D2A3AB700071C7B /* Definition.swift */; };
 		5C9EEFCF1D2A481400071C7B /* ApplicationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9EEFCE1D2A481400071C7B /* ApplicationCenter.swift */; };
 		5C9EEFD11D2A4A4400071C7B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9EEFD01D2A4A4400071C7B /* UserInfo.swift */; };
@@ -85,6 +86,7 @@
 		5C032B981D295C44003CF613 /* SeatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeatTableViewController.swift; path = ../../SeatTableViewController.swift; sourceTree = "<group>"; };
 		5C032B9A1D296047003CF613 /* SeatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeatViewCell.swift; path = ../../../SeatViewCell.swift; sourceTree = "<group>"; };
 		5C28F6331D2F59400032E26C /* ToolHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolHelper.swift; sourceTree = "<group>"; };
+		5C828BBB1D3E08430037F5B1 /* SignStatusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignStatusTableViewController.swift; sourceTree = "<group>"; };
 		5C9EEFC61D2A3AB700071C7B /* Definition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definition.swift; sourceTree = "<group>"; };
 		5C9EEFCE1D2A481400071C7B /* ApplicationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationCenter.swift; path = BabyGuard/MVC/Model/ApplicationCenter.swift; sourceTree = SOURCE_ROOT; };
 		5C9EEFD01D2A4A4400071C7B /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				5CB887601D2C97C900F00AED /* ListViewController.swift */,
 				5C032B981D295C44003CF613 /* SeatTableViewController.swift */,
 				5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */,
+				5C828BBB1D3E08430037F5B1 /* SignStatusTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				5CB75FDF1D37275F007B0A71 /* CVCalendarView.swift in Sources */,
 				5CB75FED1D37275F007B0A71 /* CVSet.swift in Sources */,
 				5CB75FD91D37275F007B0A71 /* CVCalendarManager.swift in Sources */,
+				5C828BBC1D3E08430037F5B1 /* SignStatusTableViewController.swift in Sources */,
 				5CBA04C91D34DD8000ADFCF8 /* CalendarViewController.swift in Sources */,
 				5CB8876E1D2CE7C500F00AED /* ClassViewCell.swift in Sources */,
 				5C9EEFCF1D2A481400071C7B /* ApplicationCenter.swift in Sources */,

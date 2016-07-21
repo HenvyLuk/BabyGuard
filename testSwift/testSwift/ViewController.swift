@@ -18,16 +18,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let name = "1234:5678999"
+        let name = "2016072"
         
-        let range = (name as NSString).rangeOfString(":")
+        let year = (name as NSString).substringToIndex(4)
    
-        let new = (name as NSString).substringToIndex(range.location)
+        let mon = (name as NSString).substringWithRange(NSMakeRange(4, 2))
         
-        let most = (name as NSString).substringFromIndex(range.location + range.length)
+        let day = (name as NSString).substringFromIndex(6)
         
         
-        //print(new)
+        
+        print(year)
+        print(mon)
+        print(day)
         //print(most)
         
         
@@ -36,9 +39,6 @@ class ViewController: UIViewController {
     }
     @IBAction func testBtn(sender: AnyObject) {
         
-        var dic:Dictionary<String,String> = ["1":"aaa","2":"bbb","3":"ccc"]
-        
-        print(dic)
 
   
         
