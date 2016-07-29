@@ -31,6 +31,7 @@
 		5CA64C531D2AAE3800F5CE32 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C481D2AAE3800F5CE32 /* AFURLRequestSerialization.m */; };
 		5CA64C541D2AAE3800F5CE32 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C4A1D2AAE3800F5CE32 /* AFURLResponseSerialization.m */; };
 		5CA64C551D2AAE3800F5CE32 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C4C1D2AAE3800F5CE32 /* AFURLSessionManager.m */; };
+		5CAA86871D4A11D9004A60C1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA86861D4A11D9004A60C1 /* TabBarViewController.swift */; };
 		5CAA9D2C1D3CCE04006F91EC /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA9D2B1D3CCE04006F91EC /* AlertHelper.swift */; };
 		5CAE45961D3536D300D541B2 /* TopDisAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE45951D3536D300D541B2 /* TopDisAnimator.swift */; };
 		5CB34CC61D2E3E6200F39150 /* SeatInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB34CC51D2E3E6200F39150 /* SeatInfo.swift */; };
@@ -67,8 +68,11 @@
 		5CBA04C71D34865100ADFCF8 /* XKeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04C61D34865100ADFCF8 /* XKeychainHelper.m */; };
 		5CBA04C91D34DD8000ADFCF8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */; };
 		5CBA04D11D34E8A700ADFCF8 /* TopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04D01D34E8A700ADFCF8 /* TopAnimator.swift */; };
+		5CBB1D731D4907B1007B56C0 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBB1D721D4907B1007B56C0 /* Menu.storyboard */; };
 		5CCBA8A51D29E87D002FD76B /* XDeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */; };
 		5CCC4C271D2B97C400C162EF /* XConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */; };
+		5CCD7DB61D47119500E6079F /* SlideMenuAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD7DB51D47119500E6079F /* SlideMenuAnimatedTransition.swift */; };
+		5CCD7DC11D474B5300E6079F /* RightMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD7DC01D474B5300E6079F /* RightMenuTableViewController.swift */; };
 		5CDC7A6E1D24F64800F19BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC7A6D1D24F64800F19BAD /* AppDelegate.swift */; };
 		5CDC7A701D24F64800F19BAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC7A6F1D24F64800F19BAD /* ViewController.swift */; };
 		5CDC7A731D24F64800F19BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC7A711D24F64800F19BAD /* Main.storyboard */; };
@@ -78,7 +82,9 @@
 		5CDC7A831D2503C400F19BAD /* SeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC7A821D2503C400F19BAD /* SeatView.swift */; };
 		5CDC7A851D2504F200F19BAD /* TapableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC7A841D2504F200F19BAD /* TapableView.swift */; };
 		5CDC7A891D25149600F19BAD /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC7A881D25149600F19BAD /* CircleView.swift */; };
+		5CDCBC8C1D4B403C006960B6 /* moments.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCBC8B1D4B403B006960B6 /* moments.mp4 */; };
 		5CE518F21D2ABFD100578C41 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE518F11D2ABFD100578C41 /* NSString+URL.m */; };
+		5CED3F031D463E160041BE54 /* LeftMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CED3F021D463E160041BE54 /* LeftMenuTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +123,7 @@
 		5CA64C4B1D2AAE3800F5CE32 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		5CA64C4C1D2AAE3800F5CE32 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		5CA64CE41D2ABDDC00F5CE32 /* BabyGuard-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BabyGuard-Bridging-Header.h"; path = "Common/BabyGuard-Bridging-Header.h"; sourceTree = "<group>"; };
+		5CAA86861D4A11D9004A60C1 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		5CAA9D2B1D3CCE04006F91EC /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		5CAE45951D3536D300D541B2 /* TopDisAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopDisAnimator.swift; sourceTree = "<group>"; };
 		5CB34CC51D2E3E6200F39150 /* SeatInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatInfo.swift; sourceTree = "<group>"; };
@@ -154,9 +161,13 @@
 		5CBA04C61D34865100ADFCF8 /* XKeychainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKeychainHelper.m; sourceTree = "<group>"; };
 		5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		5CBA04D01D34E8A700ADFCF8 /* TopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAnimator.swift; sourceTree = "<group>"; };
+		5CBB1D721D4907B1007B56C0 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XDeviceHelper.swift; path = ../XDeviceHelper.swift; sourceTree = "<group>"; };
 		5CCC4C251D2B97C400C162EF /* XConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XConnectionHelper.h; sourceTree = "<group>"; };
 		5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XConnectionHelper.m; sourceTree = "<group>"; };
+		5CCD7DB51D47119500E6079F /* SlideMenuAnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideMenuAnimatedTransition.swift; path = BabyGuard/MVC/Controller/SlideMenuAnimatedTransition.swift; sourceTree = SOURCE_ROOT; };
+		5CCD7DBF1D47291600E6079F /* SlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlideMenu.h; path = BabyGuard/MVC/Controller/SlideMenu.h; sourceTree = SOURCE_ROOT; };
+		5CCD7DC01D474B5300E6079F /* RightMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMenuTableViewController.swift; sourceTree = "<group>"; };
 		5CDC7A6A1D24F64800F19BAD /* BabyGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CDC7A6D1D24F64800F19BAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CDC7A6F1D24F64800F19BAD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -168,8 +179,10 @@
 		5CDC7A821D2503C400F19BAD /* SeatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeatView.swift; path = ../../SeatView.swift; sourceTree = "<group>"; };
 		5CDC7A841D2504F200F19BAD /* TapableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapableView.swift; path = ../../TapableView.swift; sourceTree = "<group>"; };
 		5CDC7A881D25149600F19BAD /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleView.swift; path = ../../CircleView.swift; sourceTree = "<group>"; };
+		5CDCBC8B1D4B403B006960B6 /* moments.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = moments.mp4; sourceTree = "<group>"; };
 		5CE518F01D2ABFD100578C41 /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URL.h"; sourceTree = "<group>"; };
 		5CE518F11D2ABFD100578C41 /* NSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URL.m"; sourceTree = "<group>"; };
+		5CED3F021D463E160041BE54 /* LeftMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTableViewController.swift; sourceTree = "<group>"; };
 		854B0F0F95BEFFD98125EAC0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAA4D38A2F87304612815D9D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -192,6 +205,8 @@
 				5C9EEFCE1D2A481400071C7B /* ApplicationCenter.swift */,
 				5C9EEFD41D2A4D3300071C7B /* RequestCenter.swift */,
 				5CA2571C1D2B4E460093E516 /* DataDirector.swift */,
+				5CCD7DB51D47119500E6079F /* SlideMenuAnimatedTransition.swift */,
+				5CCD7DBF1D47291600E6079F /* SlideMenu.h */,
 			);
 			name = Common;
 			path = hjhkk;
@@ -234,6 +249,9 @@
 				5C032B981D295C44003CF613 /* SeatTableViewController.swift */,
 				5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */,
 				5C828BBB1D3E08430037F5B1 /* SignStatusTableViewController.swift */,
+				5CED3F021D463E160041BE54 /* LeftMenuTableViewController.swift */,
+				5CCD7DC01D474B5300E6079F /* RightMenuTableViewController.swift */,
+				5CAA86861D4A11D9004A60C1 /* TabBarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -343,6 +361,7 @@
 		5CDC7A611D24F64700F19BAD = {
 			isa = PBXGroup;
 			children = (
+				5CDCBC8B1D4B403B006960B6 /* moments.mp4 */,
 				5CB75FB91D37275F007B0A71 /* CVCalendar */,
 				5CA64C391D2AAE3800F5CE32 /* AFNetworking */,
 				5C9EEFCD1D2A3CC800071C7B /* Resources */,
@@ -370,6 +389,7 @@
 				5CDC7A6D1D24F64800F19BAD /* AppDelegate.swift */,
 				5CDC7A6F1D24F64800F19BAD /* ViewController.swift */,
 				5CDC7A711D24F64800F19BAD /* Main.storyboard */,
+				5CBB1D721D4907B1007B56C0 /* Menu.storyboard */,
 				5CDC7A771D24F64800F19BAD /* Assets.xcassets */,
 				5CDC7A791D24F64800F19BAD /* LaunchScreen.storyboard */,
 				5CDC7A7C1D24F64800F19BAD /* Info.plist */,
@@ -462,6 +482,8 @@
 				5CDC7A7B1D24F64800F19BAD /* LaunchScreen.storyboard in Resources */,
 				5CDC7A781D24F64800F19BAD /* Assets.xcassets in Resources */,
 				5CDC7A731D24F64800F19BAD /* Main.storyboard in Resources */,
+				5CBB1D731D4907B1007B56C0 /* Menu.storyboard in Resources */,
+				5CDCBC8C1D4B403C006960B6 /* moments.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +582,8 @@
 				5CA64C4E1D2AAE3800F5CE32 /* AFHTTPRequestOperationManager.m in Sources */,
 				5CB75FE81D37275F007B0A71 /* CVCalendarWeekView.swift in Sources */,
 				5CB75FE11D37275F007B0A71 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
+				5CAA86871D4A11D9004A60C1 /* TabBarViewController.swift in Sources */,
+				5CCD7DC11D474B5300E6079F /* RightMenuTableViewController.swift in Sources */,
 				5CDC7A831D2503C400F19BAD /* SeatView.swift in Sources */,
 				5CA2571F1D2B584A0093E516 /* DataHelper.swift in Sources */,
 				5CB75FD81D37275F007B0A71 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
@@ -567,6 +591,7 @@
 				5CB75FED1D37275F007B0A71 /* CVSet.swift in Sources */,
 				5CB75FD91D37275F007B0A71 /* CVCalendarManager.swift in Sources */,
 				5C828BBC1D3E08430037F5B1 /* SignStatusTableViewController.swift in Sources */,
+				5CED3F031D463E160041BE54 /* LeftMenuTableViewController.swift in Sources */,
 				5CBA04C91D34DD8000ADFCF8 /* CalendarViewController.swift in Sources */,
 				5CB8876E1D2CE7C500F00AED /* ClassViewCell.swift in Sources */,
 				5C9EEFCF1D2A481400071C7B /* ApplicationCenter.swift in Sources */,
@@ -586,6 +611,7 @@
 				5CA64C531D2AAE3800F5CE32 /* AFURLRequestSerialization.m in Sources */,
 				5CB75FD51D37275F007B0A71 /* CVAuxiliaryView.swift in Sources */,
 				5CA64C4D1D2AAE3800F5CE32 /* AFHTTPRequestOperation.m in Sources */,
+				5CCD7DB61D47119500E6079F /* SlideMenuAnimatedTransition.swift in Sources */,
 				5CA64C541D2AAE3800F5CE32 /* AFURLResponseSerialization.m in Sources */,
 				5CDC7A6E1D24F64800F19BAD /* AppDelegate.swift in Sources */,
 			);
@@ -707,7 +733,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BabyGuard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sjgz.BabyGuard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -726,7 +752,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BabyGuard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sjgz.BabyGuard;
 				PRODUCT_NAME = "$(TARGET_NAME)";

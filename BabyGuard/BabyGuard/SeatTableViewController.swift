@@ -15,7 +15,6 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     var studentDic = NSDictionary?()
     var curRequest: AFHTTPRequestOperation? = nil
     var classID = ""
-    var lanDomain = ""
     var stuArray = NSArray()
     var stuNameArray = [String]()
     var hud = MBProgressHUD()
@@ -39,14 +38,10 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         }else{
             self.isContinueCheck = true
         }
-        //listStudents()
+        
+        
+        listStudents()
 
-        if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
-            //listStudents()
-
-        } else if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 1 {
-           //listDateSignStatus()
-        }
         
         
     }
@@ -77,7 +72,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier")
         if cell == nil {
             cell = SeatViewCell(style: .Default, reuseIdentifier: "reuseIdentifier")
-            
+            //cell?.imageView?.image = UIImage(named: "left")
         }
         tableView.separatorStyle = .None
         if let seatCell = cell as? SeatViewCell{
@@ -122,6 +117,14 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
         let seatInfo = self.stuDic[userIDArray[index] as String]! as SeatInfo
         
         seatInfo.isSelected = !seatInfo.isSelected!
+        
+        if (seatInfo.isSelected == true) {
+             NSNotificationCenter.defaultCenter().postNotificationName("mainViewMenuShow", object: self, userInfo: nil)
+        }else if (seatInfo.isSelected == false){
+             NSNotificationCenter.defaultCenter().postNotificationName("mainViewMenuHide", object: self, userInfo: nil)
+        }
+        
+       
         
         self.tableView.reloadData()
         
@@ -197,7 +200,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     func listStudentsSuccess(data: String) {
         let content = XConnectionHelper.contentOfWanServerString(data)
         if content != nil {
-            print("stuInfo:\(content)")
+            //print("stuInfo:\(content)")
             if ((content[Definition.KEY_SER_SUC]?.isEqual("true")) != nil) {
                 let count = content[Definition.KEY_SER_COUNT] as? String
                 if NSInteger(count!) == 1{
@@ -214,9 +217,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
                             
                             self.stuDic[(seatInfo.userInfo?.userID)!] = seatInfo
                             
-                            
                         }
-                        
                         
                         self.checkSignStatus()
                         

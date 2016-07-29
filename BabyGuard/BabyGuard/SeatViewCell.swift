@@ -27,6 +27,7 @@ class SeatViewCell: UITableViewCell, SeatViewProtocol{
         self.selectionStyle = UITableViewCellSelectionStyle.None
         let appSize = XDeviceHelper.appSize()
         let bgImgView = UIImageView(frame: CGRectMake(0, 0, appSize.width, 90))
+        bgImgView.image = UIImage(named: "item_bar")
         
         self.contentView .addSubview(bgImgView)
         let interSpce = (appSize.width - 4 * 58 - 20) * 0.25

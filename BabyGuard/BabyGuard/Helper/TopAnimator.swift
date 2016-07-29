@@ -39,7 +39,7 @@ class TopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         let screenHeight = UIScreen.mainScreen().bounds.size.height
 
         let positionAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
-        positionAnimation.toValue = screenHeight * 0.5 * 0.618
+        positionAnimation.toValue = screenHeight * 0.5 * 0.15
         positionAnimation.springBounciness = 10
         
         

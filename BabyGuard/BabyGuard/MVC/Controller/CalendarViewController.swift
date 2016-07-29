@@ -26,9 +26,14 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.clearColor()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
 
+        for _ in 0..<2 {
+            let blur = FXBlurView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
+            self.view.insertSubview(blur, atIndex: 0)
+        }
+        
         // Do any additional setup after loading the view.
     }
  
@@ -70,11 +75,10 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     
     /// Required method to implement!
     func firstWeekday() -> Weekday {
-        return .Monday
+        return .Sunday
     }
     
     // MARK: Optional methods
-    
     func shouldShowWeekdaysOut() -> Bool {
         return shouldShowDaysOut
     }
@@ -89,8 +93,6 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
         seatViewCon.selectedDateSignStatus(dayView.date.commonDescription)
         
         self.dismissViewControllerAnimated(true, completion: nil)
-        
-        print("wwwww\(dayView.weekView.weekdaysIn)")
         
     }
     
@@ -249,7 +251,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     }
     
     func dayOfWeekBackGroundColor() -> UIColor {
-        return UIColor.orangeColor()
+        return UIColor.clearColor()
     }
     
 }

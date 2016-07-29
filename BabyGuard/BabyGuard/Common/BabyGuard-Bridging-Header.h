@@ -19,3 +19,5 @@
 #import "SSLunarDate.h"
 
 #import "MJRefresh.h"
+
+#import "FXBlurView.h"

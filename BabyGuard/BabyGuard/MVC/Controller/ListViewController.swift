@@ -13,13 +13,20 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
     var schoolArray = NSArray()
     var classNameArray = [String]()
     var hud = MBProgressHUD()
-    
+    var urlString = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
+            self.navigationItem.title = "班级列表"
+        }
+        self.navigationItem.hidesBackButton = true
+        
         self.listRequest()
-       
+       print("llllllllll")
+        
         
     }
     
@@ -118,6 +125,9 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
             
             
         }
+        self.tableView.reloadData()
+
+        
         
     }
     

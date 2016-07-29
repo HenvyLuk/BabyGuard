@@ -13,8 +13,8 @@ class SeatInfo: NSObject {
     var userInfo: UserInfo?
     var amSignStatus = SignStatus.SignStatusNo
     var pmSignStatus = SignStatus.SignStatusNo
-    var amSignTime = String?()
-    var pmSignTime = String?()
+    var amSignTime = ""
+    var pmSignTime = ""
     var isSelected = Bool?()
     
     
