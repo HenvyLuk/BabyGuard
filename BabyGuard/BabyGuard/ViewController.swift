@@ -662,7 +662,9 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 self.mainBtnView.frame = CGRectMake(0,h - self.mainBtnView.frame.height , self.mainBtnView.bounds.size.width, self.mainBtnView.bounds.size.height)
             }) { (true) in
-                
+                print(self.tipsView.frame)
+                print(self.mainBtnView.frame)
+
             }
             
         }//C37HM42BDTC0
@@ -678,6 +680,8 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 self.tipsView.frame = CGRectMake(0, h - self.tipsView.frame.height , self.tipsView.bounds.size.width, self.tipsView.bounds.size.height)
             }) { (true) in
+                print(self.tipsView.frame)
+                print(self.mainBtnView.frame)
             }
         }
         
