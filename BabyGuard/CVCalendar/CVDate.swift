@@ -69,6 +69,8 @@ extension CVDate {
     public var commonDescription: String {
         get {
             let month = dateFormattedStringWithFormat("MM", fromDate: date)
+            let day = dateFormattedStringWithFormat("dd", fromDate: date)
+
             //return "\(day) \(month), \(year)"
             return "\(year)\(month)\(day)"
             

@@ -15,67 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var password = String()
     var username = String()
     var guid = String()
-    var isAutoLogin = Bool()
     var hud = MBProgressHUD()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        self.isAutoLogin = false
-
-        if Platform.isSimulator {
-            var udid = XKeychainHelper.loadDataForKey(Definition.KEY_KC_UDID) as? String
-            if udid == nil {
-                udid = XKeychainHelper.generateUDID()
-                ApplicationCenter.defaultCenter().udid = udid
-                XKeychainHelper.saveData(udid, forKey: Definition.KEY_KC_UDID)
-                print("udid:\(udid)")
-            }else {
-                ApplicationCenter.defaultCenter().udid = udid
-            }
-        }else {
-            print("do nothing")
-        }
-        
-        let userName = XKeychainHelper.loadDataForKey(Definition.KEY_KC_LAST_NAME)
-        if userName != nil {
-            self.username = (userName as? String)!
-            print(self.username)
-        }
-        
-        
-        let userInfoDic = XKeychainHelper.loadDataForKey(Definition.KEY_KC_PREFIX + self.username) as? NSDictionary
-        if (userInfoDic != nil) {
-            let guid = userInfoDic![Definition.KEY_KC_GUID] as? String
-            if guid != nil {
-                self.guid = guid!
-            }else{
-                self.guid = ""
-            }
-            
-            let password = userInfoDic![Definition.KEY_KC_PASSWORD]
-            let domain = userInfoDic![Definition.KEY_KC_DOMAIN]
-            if ((password != nil) && (domain != nil)) {
-                self.password = (password as? String)!
-                ApplicationCenter.defaultCenter().wanDomain = domain as? String
-                self.isAutoLogin = true
-                print(self.password)
-            }
-            
-        }else {
-            self.guid = ""
-        }
-        if isAutoLogin == true {
-            let loginViewCon = LoginViewController()
-            loginViewCon.guid = self.guid
-            //loginViewCon.login(withUsername: self.username, passWord: self.password)
-            
-            let st = UIStoryboard(name: "Main", bundle: nil)
-            let nav = st.instantiateViewControllerWithIdentifier("navigation")
-            //self.window?.rootViewController = nav
-            
-            
-        }
-
+           sleep(2)
         
         
         

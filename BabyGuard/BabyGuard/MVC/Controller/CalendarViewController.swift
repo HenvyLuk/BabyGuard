@@ -21,7 +21,8 @@ class CalendarViewController: UIViewController {
     var animationFinished = true
     var selectedDay: DayView!
     var seatViewCon = SeatTableViewController()
-    
+    var signViewCon = SignStatusTableViewController()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,8 +91,23 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     func didSelectDayView(dayView: CVCalendarDayView, animationDidFinish: Bool) {
         print("\(dayView.date.commonDescription) is selected!")
         selectedDay = dayView
-        seatViewCon.selectedDateSignStatus(dayView.date.commonDescription)
-        
+        if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
+            //seatViewCon.selectedDateSignStatus(dayView.date.commonDescription)
+            
+        NSNotificationCenter.defaultCenter().postNotificationName("selectedDaySignStatus", object: self, userInfo: ["selectedDay": dayView.date.commonDescription])
+        NSNotificationCenter.defaultCenter().postNotificationName("updateNaviTitle", object: self, userInfo: ["selectedDay": dayView.date.commonDescription])
+            
+
+        } else if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 1 {
+           signViewCon.selectedWeekSignStatus(dayView.date.commonDescription)
+            //signViewCon.isCurDate = false
+            //ToolHelper.cacheInfoSet(Definition.KEY_SELECTEDDAY, value: dayView.date.commonDescription)
+            
+        NSNotificationCenter.defaultCenter().postNotificationName("selectedWeekSignStatus", object: self, userInfo: ["selectedDay": dayView.date.commonDescription])
+            
+            
+        }
+                
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }

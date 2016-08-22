@@ -13,54 +13,85 @@ class LeftMenuTableViewController: UITableViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarImage: UIImageView!
     let animatedTransition = SlideMenuAnimatedTransition()
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LeftMenuTableViewController.dismissLeftMenu), name: "leftMenuDismiss", object: nil)
+        
         let bgIm = UIImageView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
         bgIm.image = UIImage(named: "leftMenuBG")
         self.tableView.backgroundView = bgIm
         self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.basicSetting()
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     @IBAction func testAction(sender: AnyObject) {
-        UIView.animateWithDuration(0.0, animations: {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }) { (true) in
-            NSNotificationCenter.defaultCenter().postNotificationName("popClassList", object: self, userInfo: nil)
-            
+        if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
+            UIView.animateWithDuration(0.0, animations: {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }) { (true) in
+                NSNotificationCenter.defaultCenter().postNotificationName("popClassList", object: self, userInfo: nil)
+                
+            }
+        }else if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 1 {
+           AlertHelper.showConfirmAlert("当前账号该功能暂不可用！", delegate: nil, type: 0)
         }
         
+        
+        
+    }
+    func presentVC(withST st: String, id: String) {
+        let st = UIStoryboard(name: st, bundle: nil)
+        let vc = st.instantiateViewControllerWithIdentifier(id)
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     @IBAction func testAction2(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("pushSelfInfo", object: self, userInfo: nil)
-
-        
-        
+        self.presentVC(withST: "Menu", id: "personalInfo")
     }
     
     @IBAction func SecretUpdate(sender: AnyObject) {
+        self.presentVC(withST: "Menu", id: "updateSecret")
     }
-    
+    //normalQuestions
     @IBAction func normalQuestion(sender: AnyObject) {
+        self.presentVC(withST: "Menu", id: "normalQuestions")
     }
-    
+    //feedback
     @IBAction func viewFeedback(sender: AnyObject) {
+        self.presentVC(withST: "Menu", id: "feedback")
     }
-    
+    //aboutBG
     @IBAction func aboutSelf(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("pushAboutSelf", object: self, userInfo: nil)
-
+     self.presentVC(withST: "Menu", id: "aboutBG")
         
     }
     
     @IBAction func loginOff(sender: AnyObject) {
+        XKeychainHelper.deleteDataForKey(Definition.KEY_KC_LAST_NAME)
+        XKeychainHelper.deleteDataForKey(Definition.KEY_KC_DOMAIN)
+        XKeychainHelper.deleteDataForKey(Definition.KEY_KC_DOMAINNAME)
+        XKeychainHelper.deleteDataForKey(Definition.KEY_KC_USERNAME)
+        XKeychainHelper.deleteDataForKey(Definition.KEY_KC_PASSWORD)
+        XKeychainHelper.deleteDataForKey(Definition.KEY_KC_CURUSERINFO)
+        XKeychainHelper.deleteDataForKey(Definition.KEY_KC_CURSCHINFO)
+        XKeychainHelper.deleteDataForKey(Definition.KEY_KC_CLASSARRAY)
+        
+        self.presentVC(withST: "Main", id: "navigation")
+        
+        
+        
+    }
+    
+    func dismissLeftMenu() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+
     }
     
     func basicSetting() {
@@ -76,8 +107,7 @@ class LeftMenuTableViewController: UITableViewController {
         
         
     }
-    
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,8 +120,31 @@ class LeftMenuTableViewController: UITableViewController {
 //    }
 //
 //    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        print("1010010101")
 //        return 10
 //    }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row != 0 {
+            let dev = XDeviceHelper.deviceType()
+            switch dev {
+            case .iPhone4S:
+                return 30
+            case .iPhone5S:
+                return 45
+            case .iPhone6S:
+                return 50
+            case .iPhone6SP:
+                return 55
+            default:
+                return 70
+                
+            }
+        }else {
+          return 149
+        }
+        
+        
+    }
 //
 //    
 //    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

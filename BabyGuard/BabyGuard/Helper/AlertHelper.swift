@@ -23,4 +23,17 @@ class AlertHelper: NSObject {
         alertView.show()
     }
     
+    class func showAlertDismiss(message: String, delegate: UIAlertViewDelegate?) {
+        let alertView = UIAlertView(title: "提示", message: message, delegate: delegate, cancelButtonTitle: "确定")
+        alertView.show()
+        self.performSelector(#selector(AlertHelper.dissmiss), withObject: alertView, afterDelay: 1.0)
+        
+    }
+
+    func dissmiss(withAlertView alertView: UIAlertView) {
+        print("dddddddd")
+        alertView.dismissWithClickedButtonIndex(0, animated: true)
+        
+        
+    }
 }

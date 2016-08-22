@@ -18,14 +18,23 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let bgClo = UIColor(red: 0.23, green: 0.67, blue: 0.53, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = bgClo
+        
+//        self.navigationItem.title = "我的班级"
+//        let navigationTitleAttribute: NSDictionary = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName)
+//        self.navigationController?.navigationBar.titleTextAttributes = navigationTitleAttribute as? [String : AnyObject]
+        
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
-            self.navigationItem.title = "班级列表"
+            //self.navigationItem.title = "班级列表"
         }
         self.navigationItem.hidesBackButton = true
+        self.navigationController?.viewControllers.removeFirst()
         
         self.listRequest()
-       print("llllllllll")
         
         
     }
@@ -60,6 +69,8 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
                         let dataDic = schoolArray[0]
                         let schoolInfo = SchoolInfo.schoolInfoFromServerData(dataDic as! NSDictionary)
                         ApplicationCenter.defaultCenter().curSchool = schoolInfo
+                        //XKeychainHelper.saveData(schoolInfo, forKey: Definition.KEY_KC_CURSCHINFO)
+                        
                         
                         let listClassStr = Definition.listClassUrl(withDomain: ApplicationCenter.defaultCenter().wanDomain!, userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, parentID: (ApplicationCenter.defaultCenter().curSchool?.identifier)!, pageSize: "100", curPage: "1")
                         
@@ -111,6 +122,7 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
                     
                         let className = value[Definition.KEY_DATA_DEPT_NAME] as? String
                         self.classNameArray.append(className!)
+                        XKeychainHelper.saveData(self.classNameArray, forKey: Definition.KEY_KC_CLASSARRAY)
                         
                     }
                     dispatch_async(dispatch_get_main_queue(), {
@@ -138,13 +150,12 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
     func ClassCell(cell :ClassViewCell, didSelectAtIndex index :NSInteger){
         let selectClass = self.schoolArray[index] as! NSDictionary
         
+        ApplicationCenter.defaultCenter().curClass = ClassInfo.classInfoFromServerData(selectClass)
+        print("selectClass:\(selectClass)")
         ToolHelper.cacheInfoSet(Definition.KEY_CLASSID, value: selectClass[Definition.KEY_DATA_ID] as! String)
         
         let sto = UIStoryboard.init(name: "Main", bundle: nil)
-        
         let viewCon = sto.instantiateViewControllerWithIdentifier("class")
-        
-        
         self.navigationController?.pushViewController(viewCon, animated: true)
         
         
@@ -206,6 +217,10 @@ class ListViewController: UITableViewController, ClassCellProtocol, MBProgressHU
         return cell!
     }
 
+    deinit {
+    
+        print("list deinit")
+    }
     
     /*
     // Override to support conditional editing of the table view.

@@ -22,6 +22,8 @@ class SignStatusTableViewController: UITableViewController {
     var weekStrs = [String]()
     var isReturn = false
     var nums = [NSInteger]()
+    var isCurDate = true
+    var selectedDay = ""
     
     
     var testDic: [NSDictionary] =
@@ -46,23 +48,35 @@ class SignStatusTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let currentDate = ToolHelper.currentDate()
+        let currentDate = ToolHelper.currentDate(true, dayStr: nil)
 
         self.serUrl = ToolHelper.cacheInfoGet(Definition.KEY_SERVICEURL)
-
+        
         listDateSignStatus(currentDate)
+        
         self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
+        print("ttttttttt")
         
-    }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignStatusTableViewController.tempFunSelected), name: "selectedWeekSignStatus", object: nil)
+        
+    }//#selector(ViewController.popPrecious)
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func tempFunSelected(notice: NSNotification) {
+        let info = notice.userInfo
+        let dayStr = info!["selectedDay"] as! String
+        self.listDateSignStatus(dayStr)
+        num += 1
+    }
 
     func listDateSignStatus(date: String) {
+        print("listDateSignStatus")
         for weekStr in weekStrs {
             if weekStr == date {
                 return
@@ -74,8 +88,8 @@ class SignStatusTableViewController: UITableViewController {
         print(firstDay, lastDay)
         
         sectionTitles.append(firstDay + "--" + lastDay)
-        
-        let urlString = Definition.listLanStuDateSignStatus(withDomain: self.serUrl, StudentID: ApplicationCenter.defaultCenter().curUser!.userID, beginDate: firstDay, endDate: lastDay)
+        print(sectionTitles)
+        let urlString = Definition.listLanStuDateSignStatus(withDomain: ToolHelper.cacheInfoGet(Definition.KEY_SERVICEURL), StudentID: ApplicationCenter.defaultCenter().curUser!.userID, beginDate: firstDay, endDate: lastDay)
         print(urlString)
         
         RequestCenter.defaultCenter().postHttpRequest(withUrl: urlString, parameters: nil, filePath: nil, progress: nil, success: self.listDateSignSuc, cancel: {}, failure: self.listDateSignFail)
@@ -141,27 +155,29 @@ class SignStatusTableViewController: UITableViewController {
     func listDateSignSuc(data: String) {
         print(data)
         hud.show(true)
+        hud.color = UIColor.redColor()
         let content = XConnectionHelper.contentOfLanServerString(data)
         if content != nil {
             if ((content[Definition.KEY_SER_SUC]?.isEqual("true")) != nil) {
-                var data = (content["Data"] as? NSArray)!
+                let data = (content["Data"] as? NSArray)!
 //                let count = content["Count"] as! NSInteger
 //                let lastDay = data![count - 1]
 //                let lastDayStr = lastDay[Definition.KEY_DATA_SIGN_DATE] as! String
 //                let firstDayStr = data![0][Definition.KEY_DATA_SIGN_DATE] as! String
-                if data.count == 0 {
-                    data = testDic
-                    
-                    switch dataDic.count {
-                    case 2:
-                        data = testDic2
-                    case 3:
-                        data = testDic3
-                    default:
-                        print("defau")
-                        
-                    }
-                }
+                
+//                if data.count == 0 {
+//                    data = testDic
+//                    
+//                    switch dataDic.count {
+//                    case 2:
+//                        data = testDic2
+//                    case 3:
+//                        data = testDic3
+//                    default:
+//                        print("defau")
+//                        
+//                    }
+//                }
                   dataDic[sectionTitles[num - 1]] = data
                 
             }
@@ -173,7 +189,12 @@ class SignStatusTableViewController: UITableViewController {
             
         }
        
+        
+        dateContents = []
+        contents = []
         self.dateDataSwipe()
+
+        
     
     }
     
@@ -186,6 +207,10 @@ class SignStatusTableViewController: UITableViewController {
             let dateContent = value[Definition.KEY_DATA_SIGN_DATE] as! String
             dateContents.append(dateContent)
         }
+        
+        print(contents)
+        print(dateContents)
+        
     }
     
     
@@ -199,6 +224,7 @@ class SignStatusTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("num")
         return dateData.count
         
     }
@@ -219,12 +245,13 @@ class SignStatusTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        print("head")
         let width = XDeviceHelper.appSize().width
         let headView = UIView.init(frame: CGRectMake(0, 0, width, 25))
-        headView.backgroundColor = UIColor.init(red: 0.88, green: 0.88, blue: 0.88, alpha: 1.0)
+        headView.backgroundColor = UIColor.whiteColor()
         let titleLabel = UILabel.init(frame: CGRectMake(0, 0, width, 25))
         titleLabel.textAlignment = NSTextAlignment.Center
-        
+        titleLabel.textColor = UIColor(red: 0.23, green: 0.67, blue: 0.53, alpha: 1)
         if sectionTitles.count == 0 {
             titleLabel.text = "loading..."
         }else {
@@ -237,6 +264,17 @@ class SignStatusTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+         return 50
+    }
+    
+    func selectedWeekSignStatus(date: String) {
+        print("week:\(date)")
+        isCurDate = false
+        //self.listDateSignStatus(date)
+        
     }
     
     

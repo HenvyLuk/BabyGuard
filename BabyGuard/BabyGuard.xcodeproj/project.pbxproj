@@ -19,6 +19,9 @@
 		5C9EEFD51D2A4D3300071C7B /* RequestCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9EEFD41D2A4D3300071C7B /* RequestCenter.swift */; };
 		5C9EEFD71D2A55A200071C7B /* SchoolInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9EEFD61D2A55A200071C7B /* SchoolInfo.swift */; };
 		5C9EEFD91D2A59EE00071C7B /* ClassInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9EEFD81D2A59EE00071C7B /* ClassInfo.swift */; };
+		5C9FC9CE1D4F226A00F1EA41 /* NormalQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FC9CD1D4F226A00F1EA41 /* NormalQuestionViewController.swift */; };
+		5C9FC9D01D4F2B9900F1EA41 /* FeedBackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FC9CF1D4F2B9900F1EA41 /* FeedBackTableViewController.swift */; };
+		5C9FC9D21D4F332800F1EA41 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FC9D11D4F332800F1EA41 /* AboutViewController.swift */; };
 		5CA2571D1D2B4E460093E516 /* DataDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2571C1D2B4E460093E516 /* DataDirector.swift */; };
 		5CA2571F1D2B584A0093E516 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2571E1D2B584A0093E516 /* DataHelper.swift */; };
 		5CA257211D2B5C200093E516 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA257201D2B5C200093E516 /* LoginViewController.swift */; };
@@ -31,6 +34,7 @@
 		5CA64C531D2AAE3800F5CE32 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C481D2AAE3800F5CE32 /* AFURLRequestSerialization.m */; };
 		5CA64C541D2AAE3800F5CE32 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C4A1D2AAE3800F5CE32 /* AFURLResponseSerialization.m */; };
 		5CA64C551D2AAE3800F5CE32 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA64C4C1D2AAE3800F5CE32 /* AFURLSessionManager.m */; };
+		5CA76DEC1D4EE32600A6C828 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA76DEB1D4EE32600A6C828 /* SettingViewController.swift */; };
 		5CAA86871D4A11D9004A60C1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA86861D4A11D9004A60C1 /* TabBarViewController.swift */; };
 		5CAA9D2C1D3CCE04006F91EC /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA9D2B1D3CCE04006F91EC /* AlertHelper.swift */; };
 		5CAE45961D3536D300D541B2 /* TopDisAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE45951D3536D300D541B2 /* TopDisAnimator.swift */; };
@@ -65,10 +69,13 @@
 		5CB887611D2C97C900F00AED /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB887601D2C97C900F00AED /* ListViewController.swift */; };
 		5CB887631D2CDE8100F00AED /* ClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB887621D2CDE8100F00AED /* ClassView.swift */; };
 		5CB8876E1D2CE7C500F00AED /* ClassViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8876D1D2CE7C500F00AED /* ClassViewCell.swift */; };
+		5CB9ADDC1D53228000D5FEC1 /* TestedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9ADDB1D53228000D5FEC1 /* TestedViewController.swift */; };
 		5CBA04C71D34865100ADFCF8 /* XKeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04C61D34865100ADFCF8 /* XKeychainHelper.m */; };
 		5CBA04C91D34DD8000ADFCF8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */; };
 		5CBA04D11D34E8A700ADFCF8 /* TopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBA04D01D34E8A700ADFCF8 /* TopAnimator.swift */; };
 		5CBB1D731D4907B1007B56C0 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBB1D721D4907B1007B56C0 /* Menu.storyboard */; };
+		5CC544F61D4C5C7C00F439EF /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC544F51D4C5C7C00F439EF /* PersonalInfoViewController.swift */; };
+		5CC544F81D4CB2E700F439EF /* testInterface in Resources */ = {isa = PBXBuildFile; fileRef = 5CC544F71D4CB2E700F439EF /* testInterface */; };
 		5CCBA8A51D29E87D002FD76B /* XDeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */; };
 		5CCC4C271D2B97C400C162EF /* XConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */; };
 		5CCD7DB61D47119500E6079F /* SlideMenuAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD7DB51D47119500E6079F /* SlideMenuAnimatedTransition.swift */; };
@@ -100,6 +107,9 @@
 		5C9EEFD41D2A4D3300071C7B /* RequestCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestCenter.swift; path = BabyGuard/MVC/Model/RequestCenter.swift; sourceTree = SOURCE_ROOT; };
 		5C9EEFD61D2A55A200071C7B /* SchoolInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolInfo.swift; sourceTree = "<group>"; };
 		5C9EEFD81D2A59EE00071C7B /* ClassInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassInfo.swift; sourceTree = "<group>"; };
+		5C9FC9CD1D4F226A00F1EA41 /* NormalQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalQuestionViewController.swift; sourceTree = "<group>"; };
+		5C9FC9CF1D4F2B9900F1EA41 /* FeedBackTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBackTableViewController.swift; sourceTree = "<group>"; };
+		5C9FC9D11D4F332800F1EA41 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		5CA2571C1D2B4E460093E516 /* DataDirector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataDirector.swift; path = BabyGuard/Common/DataDirector.swift; sourceTree = SOURCE_ROOT; };
 		5CA2571E1D2B584A0093E516 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		5CA257201D2B5C200093E516 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +133,7 @@
 		5CA64C4B1D2AAE3800F5CE32 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		5CA64C4C1D2AAE3800F5CE32 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		5CA64CE41D2ABDDC00F5CE32 /* BabyGuard-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BabyGuard-Bridging-Header.h"; path = "Common/BabyGuard-Bridging-Header.h"; sourceTree = "<group>"; };
+		5CA76DEB1D4EE32600A6C828 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5CAA86861D4A11D9004A60C1 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		5CAA9D2B1D3CCE04006F91EC /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		5CAE45951D3536D300D541B2 /* TopDisAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopDisAnimator.swift; sourceTree = "<group>"; };
@@ -157,11 +168,14 @@
 		5CB887601D2C97C900F00AED /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		5CB887621D2CDE8100F00AED /* ClassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassView.swift; sourceTree = "<group>"; };
 		5CB8876D1D2CE7C500F00AED /* ClassViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassViewCell.swift; sourceTree = "<group>"; };
+		5CB9ADDB1D53228000D5FEC1 /* TestedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestedViewController.swift; sourceTree = "<group>"; };
 		5CBA04C51D34865100ADFCF8 /* XKeychainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XKeychainHelper.h; sourceTree = "<group>"; };
 		5CBA04C61D34865100ADFCF8 /* XKeychainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKeychainHelper.m; sourceTree = "<group>"; };
 		5CBA04C81D34DD8000ADFCF8 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		5CBA04D01D34E8A700ADFCF8 /* TopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAnimator.swift; sourceTree = "<group>"; };
 		5CBB1D721D4907B1007B56C0 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
+		5CC544F51D4C5C7C00F439EF /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
+		5CC544F71D4CB2E700F439EF /* testInterface */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = testInterface; path = BabyGuard/MVC/Controller/testInterface; sourceTree = SOURCE_ROOT; };
 		5CCBA8A41D29E87D002FD76B /* XDeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XDeviceHelper.swift; path = ../XDeviceHelper.swift; sourceTree = "<group>"; };
 		5CCC4C251D2B97C400C162EF /* XConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XConnectionHelper.h; sourceTree = "<group>"; };
 		5CCC4C261D2B97C400C162EF /* XConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XConnectionHelper.m; sourceTree = "<group>"; };
@@ -207,6 +221,7 @@
 				5CA2571C1D2B4E460093E516 /* DataDirector.swift */,
 				5CCD7DB51D47119500E6079F /* SlideMenuAnimatedTransition.swift */,
 				5CCD7DBF1D47291600E6079F /* SlideMenu.h */,
+				5CC544F71D4CB2E700F439EF /* testInterface */,
 			);
 			name = Common;
 			path = hjhkk;
@@ -252,6 +267,12 @@
 				5CED3F021D463E160041BE54 /* LeftMenuTableViewController.swift */,
 				5CCD7DC01D474B5300E6079F /* RightMenuTableViewController.swift */,
 				5CAA86861D4A11D9004A60C1 /* TabBarViewController.swift */,
+				5CC544F51D4C5C7C00F439EF /* PersonalInfoViewController.swift */,
+				5CA76DEB1D4EE32600A6C828 /* SettingViewController.swift */,
+				5C9FC9CD1D4F226A00F1EA41 /* NormalQuestionViewController.swift */,
+				5C9FC9CF1D4F2B9900F1EA41 /* FeedBackTableViewController.swift */,
+				5C9FC9D11D4F332800F1EA41 /* AboutViewController.swift */,
+				5CB9ADDB1D53228000D5FEC1 /* TestedViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -481,6 +502,7 @@
 			files = (
 				5CDC7A7B1D24F64800F19BAD /* LaunchScreen.storyboard in Resources */,
 				5CDC7A781D24F64800F19BAD /* Assets.xcassets in Resources */,
+				5CC544F81D4CB2E700F439EF /* testInterface in Resources */,
 				5CDC7A731D24F64800F19BAD /* Main.storyboard in Resources */,
 				5CBB1D731D4907B1007B56C0 /* Menu.storyboard in Resources */,
 				5CDCBC8C1D4B403C006960B6 /* moments.mp4 in Resources */,
@@ -559,12 +581,14 @@
 				5CB75FE01D37275F007B0A71 /* CVCalendarViewAnimator.swift in Sources */,
 				5CCC4C271D2B97C400C162EF /* XConnectionHelper.m in Sources */,
 				5CB75FDD1D37275F007B0A71 /* CVCalendarMonthView.swift in Sources */,
+				5CA76DEC1D4EE32600A6C828 /* SettingViewController.swift in Sources */,
 				5CA64C501D2AAE3800F5CE32 /* AFNetworkReachabilityManager.m in Sources */,
 				5CA257211D2B5C200093E516 /* LoginViewController.swift in Sources */,
 				5C9EEFD71D2A55A200071C7B /* SchoolInfo.swift in Sources */,
 				5CB75FD71D37275F007B0A71 /* CVCalendarDayView.swift in Sources */,
 				5CB75FDB1D37275F007B0A71 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				5CDC7A761D24F64800F19BAD /* BabyGuard.xcdatamodeld in Sources */,
+				5C9FC9D21D4F332800F1EA41 /* AboutViewController.swift in Sources */,
 				5C032B991D295C44003CF613 /* SeatTableViewController.swift in Sources */,
 				5C28F6341D2F59400032E26C /* ToolHelper.swift in Sources */,
 				5CB75FD61D37275F007B0A71 /* CVCalendarContentViewController.swift in Sources */,
@@ -573,6 +597,7 @@
 				5CA64C511D2AAE3800F5CE32 /* AFSecurityPolicy.m in Sources */,
 				5C9EEFD51D2A4D3300071C7B /* RequestCenter.swift in Sources */,
 				5C9EEFD11D2A4A4400071C7B /* UserInfo.swift in Sources */,
+				5C9FC9D01D4F2B9900F1EA41 /* FeedBackTableViewController.swift in Sources */,
 				5CBA04C71D34865100ADFCF8 /* XKeychainHelper.m in Sources */,
 				5C9EEFD31D2A4ADE00071C7B /* Information.swift in Sources */,
 				5CE518F21D2ABFD100578C41 /* NSString+URL.m in Sources */,
@@ -584,6 +609,7 @@
 				5CB75FE11D37275F007B0A71 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				5CAA86871D4A11D9004A60C1 /* TabBarViewController.swift in Sources */,
 				5CCD7DC11D474B5300E6079F /* RightMenuTableViewController.swift in Sources */,
+				5CC544F61D4C5C7C00F439EF /* PersonalInfoViewController.swift in Sources */,
 				5CDC7A831D2503C400F19BAD /* SeatView.swift in Sources */,
 				5CA2571F1D2B584A0093E516 /* DataHelper.swift in Sources */,
 				5CB75FD81D37275F007B0A71 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
@@ -596,6 +622,7 @@
 				5CB8876E1D2CE7C500F00AED /* ClassViewCell.swift in Sources */,
 				5C9EEFCF1D2A481400071C7B /* ApplicationCenter.swift in Sources */,
 				5C032B9B1D296047003CF613 /* SeatViewCell.swift in Sources */,
+				5C9FC9CE1D4F226A00F1EA41 /* NormalQuestionViewController.swift in Sources */,
 				5CB75FEF1D37275F007B0A71 /* CVWeekdaySymbolType.swift in Sources */,
 				5CB75FE61D37275F007B0A71 /* CVCalendarWeekContentViewController.swift in Sources */,
 				5CDC7A701D24F64800F19BAD /* ViewController.swift in Sources */,
@@ -606,6 +633,7 @@
 				5CB75FEE1D37275F007B0A71 /* CVShape.swift in Sources */,
 				5CB75FEC1D37275F007B0A71 /* CVSelectionType.swift in Sources */,
 				5CB34CC61D2E3E6200F39150 /* SeatInfo.swift in Sources */,
+				5CB9ADDC1D53228000D5FEC1 /* TestedViewController.swift in Sources */,
 				5CB887631D2CDE8100F00AED /* ClassView.swift in Sources */,
 				5CB75FE91D37275F007B0A71 /* CVDate.swift in Sources */,
 				5CA64C531D2AAE3800F5CE32 /* AFURLRequestSerialization.m in Sources */,
@@ -729,6 +757,7 @@
 			baseConfigurationReference = 55558DDB304A60D73A1E34D5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -748,6 +777,7 @@
 			baseConfigurationReference = 854B0F0F95BEFFD98125EAC0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

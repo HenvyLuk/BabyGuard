@@ -46,7 +46,6 @@ class ClassViewCell: UITableViewCell, SeatViewProtocol{
     }
     
     func setCellWithNameArray(nameArray: NSArray) {
-        print("nameArray:\(nameArray)")
         var index = 0
 
         while index < nameArray.count {

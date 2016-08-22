@@ -12,12 +12,12 @@ class ClassInfo: Information {
 
    class func classInfoFromServerData(dataDic :NSDictionary) -> ClassInfo {
         
-        let classInfo = ClassInfo?()
+        let classInfo = ClassInfo()
         
-        classInfo?.identifier = dataDic["_id"] as! String
-        classInfo?.name = dataDic["DeptName"] as! String
+        classInfo.identifier = dataDic["_id"] as! String
+        classInfo.name = dataDic["DeptName"] as! String
         
-        return classInfo!
+        return classInfo
     }
     
 }

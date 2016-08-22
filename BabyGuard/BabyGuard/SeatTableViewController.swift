@@ -25,6 +25,7 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     var isContinueCheck = Bool?()
     var checkTimer = NSTimer()
     var selectedDate = ""
+    var isCurDay = true
     
     
     override func viewDidLoad() {
@@ -39,16 +40,33 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
             self.isContinueCheck = true
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SeatTableViewController.tempList), name: "selectedDaySignStatus", object: nil)
         
         listStudents()
 
+        
+    }
+    
+    func tempList(notice: NSNotification) {
+        hud.show(true)
+        let info = notice.userInfo
+        let dayStr = info!["selectedDay"] as! String
+        if ToolHelper.currentDate(true, dayStr: nil) != dayStr {
+            isCurDay = false
+        }else {
+            print("isCurDay")
+            isCurDay = true
+        }
+        
+        self.listStudents()
+        
+        //self.selectedDateSignSuc()
         
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -191,7 +209,6 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     func listStudents() {
         let urlString = Definition.listStudentsUrl(withDomain: ApplicationCenter.defaultCenter().wanDomain!, userID: (ApplicationCenter.defaultCenter().curUser?.userID)!, parentID: self.classID, pageSize: "150", curPage: "1")
         
-        print(urlString)
             RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.listStudentsSuccess, cancel: {}, failure: self.listStudentsFailure)
 
     }
@@ -218,14 +235,20 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
                             self.stuDic[(seatInfo.userInfo?.userID)!] = seatInfo
                             
                         }
-                        
+                    
+                    if isCurDay == true {
                         self.checkSignStatus()
-                        
+
+                    }else {
+                      selectedDateSignSuc()
+                    }
+                    
+                    
                         dispatch_async(dispatch_get_main_queue(), {
                             self.hud.hide(true)
                             self.tableView.reloadData()
                         })
-                                        
+                    
                 }
                 
             }
@@ -248,7 +271,6 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
             if ToolHelper.isNowAM() {
                 let urlString = Definition.listLanStuSignStatus(withDomain: self.serUrlArr, classID: self.classID, isMorn: "1")
                 RequestCenter.defaultCenter().getHttpRequest(withUtl: urlString, success: self.checkSignStatusSuc, cancel: {}, failure: self.checkSignStatusFail)
-                print(urlString)
 
             }else {
                 let urlString = Definition.listLanStuSignStatus(withDomain: self.serUrlArr, classID: self.classID, isMorn: "0")
@@ -306,6 +328,10 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
                         }
                         if isChange {
                             self.tableView.reloadData()
+//                            dispatch_async(dispatch_get_main_queue(), {
+//                                self.hud.hide(true)
+//                                self.tableView.reloadData()
+//                            })
                         }
                         
                     }
@@ -340,34 +366,87 @@ class SeatTableViewController: UITableViewController, SeatCellProtocol{
     
     func selectedDateSignStatus(date: String) {
         print("date:\(date)")
-        
-        if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
-            let urlStr = Definition.listLanClassDateSignStatus(withDomain: ToolHelper.cacheInfoGet(Definition.KEY_SERVICEURL), ClassID: ToolHelper.cacheInfoGet(Definition.KEY_CLASSID), beginDate: date, endDate: "")
+        let urlStr = Definition.listLanClassDateSignStatus(withDomain: ToolHelper.cacheInfoGet(Definition.KEY_SERVICEURL), ClassID: ToolHelper.cacheInfoGet(Definition.KEY_CLASSID), beginDate: date, endDate: "")
             
             print(urlStr)
             
-            RequestCenter.defaultCenter().postHttpRequest(withUrl: urlStr, parameters: nil, filePath: nil, progress: nil, success: self.selectedDateSignSuc, cancel: {}, failure: self.selectedDateSignFail)
-        }else if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 1 {
-            
+        //RequestCenter.defaultCenter().postHttpRequest(withUrl: urlStr, parameters: nil, filePath: nil, progress: nil, success: self.selectedDateSignSuc, cancel: {}, failure: self.selectedDateSignFail)
+    
+        self.selectedDateSignSuc()
+        
+        
+    }
+    
+    func selectedDateSignSuc() {
+        let content = ["Success": "1","Data": ["QdState": "1","QdTime": "16.00","_id": "f1ab1827-c46a-4ba4-a752-d0264a282a96"]]
+
+        var dic = Dictionary<String, String>()
+        dic["QdState"] = "1"
+        dic["QdTime"] = "10:00"
+        dic["_id"] = "f1ab1827-c46a-4ba4-a752-d0264a282a96"
+        
+        if ((content[Definition.KEY_SER_SUC]?.isEqual("true")) != nil) {
+            var signArray = [NSDictionary]()
+            signArray.append(dic)
+
+            let now = NSDate()
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.locale = NSLocale.currentLocale()
+            dateFormatter.dateFormat = "yyyyMMdd"
+            let convertedDate = dateFormatter.stringFromDate(now)
+            for (_,value) in signArray.enumerate() {
+                let userID = value[Definition.KEY_DATA_ID] as! String
+                var isChange = false
+                
+                let seatInfo = self.stuDic[userID]
+                if seatInfo != nil {
+                    let signTime = value[Definition.KEY_DATA_SIGN_TIME]
+                    let range = (signTime as! NSString).rangeOfString(":")
+                    
+                    let hour = (signTime as! NSString).substringToIndex(range.location)
+                    let minute = (signTime as! NSString).substringFromIndex(range.location + range.length)
+                    let signStatus = SignStatus.SignStatusCard
+                    
+                    if NSInteger(hour) < 12 {
+                        if seatInfo?.amSignStatus != signStatus {
+                            seatInfo?.amSignStatus = signStatus
+                            seatInfo?.amSignTime = convertedDate + hour + minute
+                            isChange = true
+                        }
+                    }else {
+                        if seatInfo?.pmSignStatus != signStatus {
+                            seatInfo?.pmSignStatus = signStatus
+                            seatInfo?.pmSignTime = convertedDate + hour + minute
+                            isChange = true
+                        }
+                        
+                    }
+                    
+                }
+                if isChange {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.hud.hide(true)
+                        self.tableView.reloadData()
+                    })
+                    
+                }
+                
+            }
             
         }
         
         
         
         
-        
-    }
-    
-    func selectedDateSignSuc(data: String) {
-        print(data)
-        print("aaaaa")
     }
     
     func selectedDateSignFail(data: String) {
         
     }
     
-    
+    deinit {
+      print("seat deinit")
+    }
     
     
     /*

@@ -1,0 +1,26 @@
+
+
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+//需要长时间处理的代码
+
+dispatch_async(dispatch_get_main_queue(), {
+//需要主线程执行的代码
+
+})
+})
+
+let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(30 * Double(NSEC_PER_SEC)))
+dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
+print("切换到首页")
+
+
+}
+
+
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+//self.hud.hide(true)
+//                    let positionAnimation = POPSpringAnimation(propertyNamed: "positionX")
+//                    positionAnimation.velocity = 10000
+//                    positionAnimation.springBounciness = 20
+//                    self.loginView.layer.pop_addAnimation(positionAnimation, forKey: "positionAnimation")
+}

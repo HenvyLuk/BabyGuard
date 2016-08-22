@@ -15,9 +15,13 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
 
 
 
-    @IBOutlet weak var leftView: UIView!
+    @IBOutlet weak var yellow: UIView!
+    @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var push: UIButton!
     @IBOutlet weak var signIn: UIButton!
+    @IBOutlet weak var leftView: UIView!
+//    @IBOutlet weak var push: UIButton!
+//    @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var mainBtnView: UIView!
     @IBOutlet weak var coverView: UIView!
     @IBOutlet weak var contentView: UIView!
@@ -31,6 +35,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
     var lastOP = ""
     
     var temp = ""
+    var titleLab = UILabel()
     
     let animatedTransition = SlideMenuAnimatedTransition()
     let interactiveTransition = UIPercentDrivenInteractiveTransition()
@@ -217,9 +222,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
     
     
     // MARK: - SlideMenuAnimatedTransitionDelegate
-    
     func slideMenuAnimatedTransition(slideMenuAnimatedTransition: SlideMenuAnimatedTransition, handleTapGesture tapGestureRecognizer: UITapGestureRecognizer) {
-        print("tap")
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -258,6 +261,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let menu = UIStoryboard(name: "Menu", bundle: nil)
         
@@ -284,16 +288,15 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
 
         let leftItem = UIBarButtonItem(title: "菜单", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.openCompletelyAnimated))
         self.navigationItem.leftBarButtonItem = leftItem
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.popPrecious), name: "popClassList", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.pushSelfInfo), name: "pushSelfInfo", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.pushAboutSelf), name: "pushAboutSelf", object: nil)
         
         if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 5 {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.mainBtnViewShow), name: "mainViewMenuShow", object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.mainBtnViewHide), name: "mainViewMenuHide", object: nil)
-            
-            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.updateNaviTitle), name: "updateNaviTitle", object: nil)
+
             
             self.seatTableViewController = SeatTableViewController.init(style: UITableViewStyle.Plain)
             self.addChildViewController(self.seatTableViewController)
@@ -302,8 +305,28 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
 
             let rbtn = UIBarButtonItem.init(title: "查询", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.makeEnquiriesBtn))
             self.navigationItem.rightBarButtonItem = rbtn
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+            titleLab = UILabel.init(frame: CGRectMake(0, 0, 100, 30))
+            titleLab.textAlignment = NSTextAlignment.Center
+            titleLab.frame.origin.x = self.view.frame.origin.x
+            titleLab.text = ToolHelper.currentDate(false,dayStr: nil)
+            titleLab.textColor = UIColor.whiteColor()
+            self.navigationItem.titleView = titleLab
             
             self.coverView.hidden = true
+            
+            let dev = XDeviceHelper.deviceType()
+            switch dev {
+            case .iPhone4S:
+                self.textLabel.font = UIFont.systemFontOfSize(11)
+            case .iPhone5S:
+                self.textLabel.font = UIFont.systemFontOfSize(12)
+            case .iPhone6S:
+                self.textLabel.font = UIFont.systemFontOfSize(13)
+            default:
+                self.textLabel.font = UIFont.systemFontOfSize(14)
+
+            }
             
             
         }else if ApplicationCenter.defaultCenter().curUser?.userLevel?.rawValue == 1 {
@@ -315,7 +338,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
 
             let right = UIBarButtonItem(title: "查询周", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.makeEnquiriesBtn))
             self.navigationItem.rightBarButtonItem = right
-            
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
             
             let nextRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.nextPageSwipe))
             nextRecognizer.direction = UISwipeGestureRecognizerDirection.Down
@@ -325,7 +348,6 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
             coverView.addGestureRecognizer(preRecognizer)
             
             self.coverView.hidden = false
-
         }
         
     }
@@ -342,6 +364,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
         
     }
     
+   
     
     func previousPageSwipe() {
         print("2")
@@ -352,12 +375,10 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
         self.view.layer.addAnimation(animation, forKey: "animation")
         
         signStatusTableViewController.previousWeek()
-
         
     }
 
     @IBAction func leftBtnClick(sender: AnyObject) {
-        print("leftbtn")
         self.signInBtn()
     }
   
@@ -410,7 +431,6 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
     }
     
     @IBAction func pushBtnClick(sender: AnyObject) {
-        print("rightBtn")
         self.pushSignStatus()
 
     }
@@ -610,21 +630,11 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
         calendarViewCon.modalPresentationStyle = UIModalPresentationStyle.Custom
         self.navigationController?.presentViewController(calendarViewCon, animated: true, completion: nil)
         
+        //self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func popPrecious() {
         self.navigationController?.popViewControllerAnimated(true)
-    }
-    func pushSelfInfo() {
-        let sto = UIStoryboard(name: "Menu", bundle: nil)
-        let calendarViewCon = sto.instantiateViewControllerWithIdentifier("selfInfo")
-        self.navigationController?.pushViewController(calendarViewCon, animated: true)
-    }
-    
-    func pushAboutSelf() {
-        let sto = UIStoryboard(name: "Menu", bundle: nil)
-        let calendarViewCon = sto.instantiateViewControllerWithIdentifier("aboutSelf")
-        self.navigationController?.pushViewController(calendarViewCon, animated: true)
     }
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -694,11 +704,23 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate, U
         
     }
     
+    func updateNaviTitle(notice: NSNotification) {
+        print("updateNaviTitle")
+        let info = notice.userInfo
+        var title = info!["selectedDay"] as! String
+        title = ToolHelper.currentDate(false, dayStr: title)
+        titleLab.text = title
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    deinit {
+        
+        print("seat deinit")
+    }
 
 }
 

@@ -24,15 +24,56 @@ class ToolHelper: NSObject {
         
     }
     
-    class func currentDate() -> String {
+    class func currentDate(isFull: Bool, dayStr: String?) -> String {
         let date = NSDate()
         let dateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale.currentLocale()
-        dateFormatter.dateFormat = "yyyyMMdd"
-        let convertedDate = dateFormatter.stringFromDate(date)
-        return convertedDate
+        if isFull {
+            dateFormatter.dateFormat = "yyyyMMdd"
+            let convertedDate = dateFormatter.stringFromDate(date)
+            return convertedDate
+        }else {
+            dateFormatter.dateFormat = "MM.dd"
+            let convertedDate = dateFormatter.stringFromDate(date)
+            if dayStr == nil {
+                let converted = convertedDate.stringByReplacingOccurrencesOfString("0", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                return converted
+            }else {
+                var converted = (dayStr! as NSString).substringFromIndex(4)
+                
+                let index = converted.startIndex.advancedBy(2)
+                converted.insert(".", atIndex: index)
+                if (converted as NSString).substringFromIndex(4) == "0" {
+                    converted = converted.stringByReplacingOccurrencesOfString("0", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                    converted.appendContentsOf("0")
+
+                }else {
+                    converted = converted.stringByReplacingOccurrencesOfString("0", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+                }
+                
+                return converted
+            }
+            
+        }
+        
         
     }
+    
+    class func convertDayStr(dayStr: String) {
+
+    }
+    
+   class func hwcDelay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
+
+    
     
     
     

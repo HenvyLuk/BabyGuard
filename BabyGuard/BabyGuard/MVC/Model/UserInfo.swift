@@ -31,6 +31,7 @@ class UserInfo: Information {
         
         userInfo.userID = dataDic["_id"] as! String
         userInfo.personName = dataDic["PersonName"] as! String
+        userInfo.userName = dataDic["UserName"] as! String
         
         let signCode = dataDic["Phone"] as! String
         userInfo.isManualSign = (signCode == "1") ? true : false

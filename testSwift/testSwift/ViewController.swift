@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDelegate{
+    @IBOutlet weak var testBtn: UIButton!
 
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -22,8 +23,18 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     
     
+    @IBAction func testAction(sender: AnyObject) {
+        let positionAnimation = POPSpringAnimation(propertyNamed: "positionX")
+        //positionAnimation.velocity = 10000
+        positionAnimation.springBounciness = 20
+        self.testBtn.layer.pop_addAnimation(positionAnimation, forKey: "positionAnimation")
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(self.view.backgroundColor.debugDescription)
         
         self.addScrollView()
         self.addTimer()
@@ -36,8 +47,63 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     func test()  {
         //print("aaa")
         a += 1
-        print(a,self.scrollView.contentOffset.y)
+        //print(a,self.scrollView.contentOffset.y)
         
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+//        let date = NSDate()
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.locale = NSLocale.currentLocale()
+//        dateFormatter.dateFormat = "MM.dd"
+//        let convertedDate = dateFormatter.stringFromDate(date)
+//        let str = convertedDate.stringByReplacingOccurrencesOfString("0", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        var str = "0808"
+        let index = str.startIndex.advancedBy(2)
+        
+        str.insert(".", atIndex: index)
+        
+        
+        print(str)
+        
+        
+        
+        
+        
+        
+        
+        
+        //let alertView = UIAlertView()
+//        alertView.delegate = self
+//        alertView.title = "Title"
+//        alertView.message = "Message"
+//        alertView.addButtonWithTitle("OK")
+//        alertView.show()
+        
+        
+        
+        
+        //var alertView = UIAlertView(title: "提示", message: "qqqqqq", delegate: self, cancelButtonTitle: "确定")
+        ///alertView.show()
+        //self.performSelector(#selector(ViewController.dissmiss), withObject: alertView, afterDelay: 1.0)
+        
+    }
+//    func dissmiss(withAlertView alertView: UIAlertView) {
+//        
+//            print("dddddddd")
+//            alertView.dismissWithClickedButtonIndex(0, animated: true)
+//            
+//
+//    }
+
+    
+    func tetstClick()  {
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        let vc = st.instantiateViewControllerWithIdentifier("1")
+        self.presentViewController(vc, animated: true) {
+            print("p1")
+        }
     }
 
     func addScrollView()  {

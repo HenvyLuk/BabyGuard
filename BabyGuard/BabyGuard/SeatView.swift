@@ -53,35 +53,34 @@ class SeatView: TapableView {
         }else {
             self.cirImgView.hidden = true
         }
-        
         self.nameLabel.text = seatInfo.userInfo?.personName
         
         switch seatInfo.amSignStatus {
         case .SignStatusNo:
-            self.amCircleView.color = UIColor.blueColor()
+            self.amCircleView.color = UIColor(red: 0.62, green: 0.89, blue: 1.0, alpha: 1)
         case .SignStatusIll:
             self.amCircleView.color = UIColor.redColor()
         case .SignStatusManual:
-            self.amCircleView.color = UIColor.greenColor()
+            self.amCircleView.color = UIColor(red: 0.32, green: 0.92, blue: 0.72, alpha: 1)
         case .SignStatusCard:
-            self.amCircleView.color = UIColor.yellowColor()
+            self.amCircleView.color = UIColor(red: 0.94, green: 0.86, blue: 0.38, alpha: 1)
         case .SignStatusCPushed,.SignStatusMPushed:
-            self.amCircleView.color = UIColor.grayColor()
+            self.amCircleView.color = UIColor(red: 0.23, green: 0.67, blue: 0.53, alpha: 1)
         default:
             break
         }
-        
+
         switch seatInfo.pmSignStatus {
         case .SignStatusNo:
-            self.pmCircleView.color = UIColor.blueColor()
+            self.pmCircleView.color = UIColor(red: 0.62, green: 0.89, blue: 1.0, alpha: 1)
         case .SignStatusIll:
             self.pmCircleView.color = UIColor.redColor()
         case .SignStatusManual:
-            self.pmCircleView.color = UIColor.greenColor()
+            self.pmCircleView.color = UIColor(red: 0.32, green: 0.92, blue: 0.72, alpha: 1)
         case .SignStatusCard:
-            self.pmCircleView.color = UIColor.yellowColor()
+            self.pmCircleView.color = UIColor(red: 0.94, green: 0.86, blue: 0.38, alpha: 1)
         case .SignStatusCPushed,.SignStatusMPushed:
-            self.pmCircleView.color = UIColor.grayColor()
+            self.pmCircleView.color = UIColor(red: 0.23, green: 0.67, blue: 0.53, alpha: 1)
         default:
             break
         }
